@@ -1,0 +1,5 @@
+{
+  "swagger": "tools/swagger/src/cmmd/swagger.json",
+  "output": "src/app/gCmmd-api/src"
+
+}

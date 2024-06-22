@@ -1,0 +1,53 @@
+{
+  "name": "bongaz-app-angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "start:local": "npm run gUsers-api && ng serve -- --proxyConfig=proxy.conf.json",
+    "gUsers-api": "npm run gUsers-api:create-dist && npm run gUsers-api:download && npm run gUsers-api:extract && npm run gUsers-api:swagger-gen && npm run gCmmd-api:swagger-gen",
+    "gUsers-api:create-dist": "mkdir tools\\swagger\\dist\\users && mkdir tools\\swagger\\dist\\cmmd && mkdir tools\\swagger\\src\\users && mkdir tools\\swagger\\src\\cmmd",
+    "gUsers-api:download": "copy \"C:\\Program Files\\bongazApk\\users\\target\\swagger.json\" tools\\swagger\\src\\users && copy \"C:\\Program Files\\bongazApk\\commandeProduit\\target\\swagger.json\" tools\\swagger\\src\\cmmd && copy \"C:\\Program Files\\bongazApk\\users\\target\\users-0.0.1-SNAPSHOT.jar\" tools\\swagger\\dist\\users && copy \"C:\\Program Files\\bongazApk\\commandeProduit\\target\\commandeProduit-0.0.1-SNAPSHOT.jar\" tools\\swagger\\dist\\cmmd",
+    "gUsers-api:extract": "node tools\\swagger/src\\users/swagger.json 0.0.1-SNAPSHOT && node tools\\swagger/src/cmmd\\swagger.json 0.0.1-SNAPSHOT",
+    "gUsers-api:swagger-gen": "npx ng-swagger-gen -c ng-swagger-gen.json",
+    "gCmmd-api:swagger-gen": "npx ng-swagger-gen -c ng-swagger-gen-cmmd.json"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.3.0",
+    "@angular/common": "^17.3.11",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.11",
+    "@angular/platform-browser": "^17.3.11",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.11",
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "bootstrap": "^5.3.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.7.1",
+    "ngx-bootstrap": "^12.0.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.8",
+    "@angular/cli": "^17.3.8",
+    "@angular/compiler-cli": "^17.3.0",
+    "@types/body-parser": "^1.19.5",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^17.3.0",
+    "ng-swagger-gen": "^1.8.1",
+    "typescript": "~5.4.2"
+  }
+}

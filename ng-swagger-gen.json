@@ -1,0 +1,5 @@
+{
+  "swagger": "tools/swagger/src/users/swagger.json",
+  "output": "src/app/gUsers-api/src"
+
+}

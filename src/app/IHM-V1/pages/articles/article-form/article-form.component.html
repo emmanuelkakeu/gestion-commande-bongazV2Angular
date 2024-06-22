@@ -1,0 +1,44 @@
+<form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="codeArticle">Code Article</label>
+    <input id="codeArticle" formControlName="codeArticle" type="text" />
+  </div>
+
+  <div>
+    <label for="designation">Designation</label>
+    <input id="designation" formControlName="designation" type="text" />
+  </div>
+
+  <div>
+    <label for="prixUnitaireHt">Prix Unitaire HT</label>
+    <input id="prixUnitaireHt" formControlName="prixUnitaireHt" type="number" />
+  </div>
+
+  <div>
+    <label for="tauxTva">Taux TVA</label>
+    <input id="tauxTva" formControlName="tauxTva" type="number" />
+  </div>
+
+  <div>
+    <label for="prixUnitaireTtc">Prix Unitaire TTC</label>
+    <input id="prixUnitaireTtc" formControlName="prixUnitaireTtc" type="number" />
+  </div>
+
+  <div>
+    <label for="supplierId">Supplier ID</label>
+    <input id="supplierId" formControlName="supplierId" type="number" />
+  </div>
+
+  <div>
+    <label for="gasRetailerId">Gas Retailer ID</label>
+    <input id="gasRetailerId" formControlName="gasRetailerId" type="number" />
+  </div>
+
+  <div>
+    <label for="imageFile">Image File</label>
+    <input id="imageFile" type="file" (change)="onFileSelected($event)" />
+  </div>
+
+  <button type="submit" [disabled]="!articleForm.valid || !selectedFile">Submit</button>
+</form>
+

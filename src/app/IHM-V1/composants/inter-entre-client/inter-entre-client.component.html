@@ -1,0 +1,20 @@
+<div class="container-fluid px-2 max-heihg">
+  <div class="row">
+    <h3>Suppliers</h3>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let supplier of suppliers" class="col-md-3 col-sm-4 mb-3">
+      <div class="card h-100">
+        <div class="card-image">
+          <img [src]="supplier.imageUrl || './assets/product.png'" class="card-img-top" style="height: 200px;" alt="Image du fournisseur">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ supplier.name }}</h5>
+          <p class="card-text">{{ supplier.contactDetails }}</p>
+          <a class="btn btn-primary">Détails</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

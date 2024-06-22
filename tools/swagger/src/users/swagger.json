@@ -1,0 +1,814 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Swagger Api documentation for Gestion des utilisateurs de l'application",
+    "version" : "0.0.1-SNAPSHOT",
+    "title" : "Swagger Api Documentation for Gestion des utilisateurs de l'application"
+  },
+  "basePath" : "http://localhost:8082",
+  "tags" : [ {
+    "name" : "companies"
+  }, {
+    "name" : "DeliveryPersonApi"
+  }, {
+    "name" : "GasRetailerApi"
+  }, {
+    "name" : "IndividualClientApi"
+  }, {
+    "name" : "SupplierApi"
+  }, {
+    "name" : "UsersApi"
+  } ],
+  "paths" : {
+    "/gestionUtilisateurs/v1/companies/all" : {
+      "get" : {
+        "tags" : [ "companies" ],
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CompaniesDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/companies/create" : {
+      "post" : {
+        "tags" : [ "companies" ],
+        "operationId" : "save",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "companiesDto",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "imageFile",
+          "in" : "formData",
+          "required" : true,
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CompaniesDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/companies/delete/{idCompanies}" : {
+      "delete" : {
+        "tags" : [ "companies" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idCompanies",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/companies/{idCompanies}" : {
+      "get" : {
+        "tags" : [ "companies" ],
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idCompanies",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CompaniesDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/deliveryPersonne/all" : {
+      "get" : {
+        "tags" : [ "DeliveryPersonApi" ],
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DeliveryPersonDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/deliveryPersonne/create" : {
+      "post" : {
+        "tags" : [ "DeliveryPersonApi" ],
+        "operationId" : "save",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "DeliveryPersonDto",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "imageFile",
+          "in" : "formData",
+          "required" : true,
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DeliveryPersonDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/deliveryPersonne/delete/{idDeliveryPersonDto}" : {
+      "delete" : {
+        "tags" : [ "DeliveryPersonApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idDeliveryPersonDto",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/deliveryPersonne/{idClient}" : {
+      "get" : {
+        "tags" : [ "DeliveryPersonApi" ],
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DeliveryPersonDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/gasRetailer/all" : {
+      "get" : {
+        "tags" : [ "GasRetailerApi" ],
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/GasRetailerDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/gasRetailer/create" : {
+      "post" : {
+        "tags" : [ "GasRetailerApi" ],
+        "operationId" : "save",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "GasRetailerDto",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "imageFile",
+          "in" : "formData",
+          "required" : true,
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/GasRetailerDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/gasRetailer/delete/{idGasRetailer}" : {
+      "delete" : {
+        "tags" : [ "GasRetailerApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idGasRetailer",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/gasRetailer/{idGasRetailer}" : {
+      "get" : {
+        "tags" : [ "GasRetailerApi" ],
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idGasRetailer",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/GasRetailerDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/individualClient/all" : {
+      "get" : {
+        "tags" : [ "IndividualClientApi" ],
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/IndividualClientDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/individualClient/create" : {
+      "post" : {
+        "tags" : [ "IndividualClientApi" ],
+        "operationId" : "save",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "individualClientDto",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "imageFile",
+          "in" : "formData",
+          "required" : true,
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IndividualClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/individualClient/delete/{idIndividualClient}" : {
+      "delete" : {
+        "tags" : [ "IndividualClientApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idIndividualClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/individualClient/{idClient}" : {
+      "get" : {
+        "tags" : [ "IndividualClientApi" ],
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IndividualClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/suppliers/all" : {
+      "get" : {
+        "tags" : [ "SupplierApi" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/SupplierDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/suppliers/create" : {
+      "post" : {
+        "tags" : [ "SupplierApi" ],
+        "operationId" : "save",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "name" : "supplierDTO",
+          "in" : "formData",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "imageFile",
+          "in" : "formData",
+          "required" : true,
+          "type" : "file"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/SupplierDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/suppliers/delete/{idFournisseur}" : {
+      "delete" : {
+        "tags" : [ "SupplierApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/suppliers/{idFournisseur}" : {
+      "get" : {
+        "tags" : [ "SupplierApi" ],
+        "operationId" : "findById",
+        "parameters" : [ {
+          "name" : "idFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/SupplierDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/all" : {
+      "get" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/UsersDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/create" : {
+      "post" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UsersDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UsersDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/delete/{idUtilisateur}" : {
+      "delete" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idUtilisateur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/find/{email}" : {
+      "get" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "findByEmail",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UsersDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/update/password" : {
+      "post" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "changerMotDePasse",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ChangerMotDePasseUtilisateurDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UsersDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestionUtilisateurs/v1/users/{idUtilisateur}" : {
+      "get" : {
+        "tags" : [ "UsersApi" ],
+        "operationId" : "findById",
+        "parameters" : [ {
+          "name" : "idUtilisateur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UsersDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AdresseDto" : {
+      "type" : "object",
+      "properties" : {
+        "adresse1" : {
+          "type" : "string"
+        },
+        "adresse2" : {
+          "type" : "string"
+        },
+        "ville" : {
+          "type" : "string"
+        },
+        "pays" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ChangerMotDePasseUtilisateurDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "motDePasse" : {
+          "type" : "string"
+        },
+        "confirmMotDePasse" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CompaniesDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "adresseDto" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        },
+        "openingHours" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DeliveryPersonDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "adresseDto" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GasRetailerDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "adresseDto" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "ACTIVER", "DEACTIVER" ]
+        },
+        "dateCreated" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        },
+        "openingHours" : {
+          "type" : "string"
+        }
+      }
+    },
+    "IndividualClientDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "adresseDto" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RoleDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "roles" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SupplierDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "adresse" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "ACTIVER", "DEACTIVER" ]
+        },
+        "dateCreated" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "creationDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UsersDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "adresseDto" : {
+          "$ref" : "#/definitions/AdresseDto"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "contactDetails" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "ACTIVER", "DEACTIVER" ]
+        },
+        "dateCreated" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "imageFileName" : {
+          "type" : "string"
+        },
+        "rolesDto" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RoleDto"
+          }
+        }
+      }
+    }
+  }
+}
