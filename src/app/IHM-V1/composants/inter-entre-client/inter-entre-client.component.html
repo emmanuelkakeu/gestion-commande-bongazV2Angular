@@ -12,7 +12,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ supplier.name }}</h5>
           <p class="card-text">{{ supplier.contactDetails }}</p>
-          <a class="btn btn-primary">Détails</a>
+          <a class="button" [routerLink]="[supplier.id]">Détails</a>
         </div>
       </div>
     </div>

@@ -28,6 +28,7 @@ export class SupplierService {
     return this.http.get<SupplierDto>(`${this.baseUrl}/${id}`);
   }
 
+  
   findAll(): Observable<SupplierDto[]> {
     return this.http.get<SupplierDto[]>(`${this.baseUrl}/all`);
   }

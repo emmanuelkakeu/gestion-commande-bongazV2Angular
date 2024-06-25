@@ -18,4 +18,19 @@ export class ArticleService {
 
     return this.http.post<ArticleDto>(`${this.baseUrl}/create`, formData);
   }
+   findAllArticles(): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.baseUrl}/all`);
+  }
+
+  findBySupplierId(supplierId: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.baseUrl}/supplierId/${supplierId}`);
+  }
+
+  findByGasRetailerId(gasRetailerId: number): Observable<ArticleDto[]> {
+    return this.http.get<ArticleDto[]>(`${this.baseUrl}/gasRetailerId/${gasRetailerId}`);
+  }
+  delete(idArticle: number): Observable<null> {
+    const url = `${this.baseUrl}/delete/${idArticle}`;
+    return this.http.delete<null>(url);
+  }
 }

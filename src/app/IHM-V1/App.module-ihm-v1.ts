@@ -32,6 +32,7 @@ import { SupplierService } from './services/supplier.service';
 import { ArticleFormComponent } from './pages/articles/article-form/article-form.component';
 import { ArticleService } from './services/articles-service';
 import { RouterModule } from '@angular/router';
+import { DetailEntrepriseComponent } from './composants/inter-entre-client/detail-entreprise/detail-entreprise.component';
 
 @NgModule({
   declarations: [
@@ -46,14 +47,14 @@ import { RouterModule } from '@angular/router';
     PaginationComponent,
     InterEntreClientComponent,
     ArticleFormComponent,
+    DetailEntrepriseComponent,
   ],
-  imports: [
+  imports:  [
     CommonModule,
     AccordionModule.forRoot(),
     AppRoutingIhmV1Module,
     ApiModule,
     HttpClientModule,
-   
     ReactiveFormsModule,
     FormsModule,
   ],
@@ -77,8 +78,10 @@ import { RouterModule } from '@angular/router';
     BouttonActionComponent, // Assurez-vous que c'est exporté si nécessaire
     PaginationComponent,
     InterEntreClientComponent,
-    ArticleFormComponent
-  ]
+    ArticleFormComponent,
+    DetailEntrepriseComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class AppModuleIhmV1 {}

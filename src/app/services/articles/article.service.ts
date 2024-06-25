@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {UsersApiService} from '../../gUsers-api/src/services/users-api.service';
-import {ArticleService} from '../../../app/gCmmd-api/src/services';
+import {ArticleService} from '../../../app/gCmmd-api/src/services/article.service';
 import {ArticleDto} from '../../../app/gCmmd-api/src/models/article-dto'
 import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class ArticleService2 {
 
   constructor(
     private userService: UsersApiService,

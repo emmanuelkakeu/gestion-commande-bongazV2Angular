@@ -1,4 +1,4 @@
-<form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="codeArticle">Code Article</label>
     <input id="codeArticle" formControlName="codeArticle" type="text" />
@@ -41,4 +41,52 @@
 
   <button type="submit" [disabled]="!articleForm.valid || !selectedFile">Submit</button>
 </form>
+ -->
 
+ <div class="form-container">
+  <form [formGroup]="articleForm" (ngSubmit)="onSubmit()" >
+    <div class="formulaire">
+      <div class="form-group">
+        <input id="codeArticle" placeholder="code article" formControlName="codeArticle" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input id="designation" placeholder="Designation" formControlName="designation" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input id="prixUnitaireHt" placeholder="Prix Unitaire HT" formControlName="prixUnitaireHt" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input id="tauxTva"  placeholder="Taux TVA" formControlName="tauxTva" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input id="prixUnitaireTtc" placeholder="Prix Unitaire TTC" formControlName="prixUnitaireTtc" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="supplierId">Choose supplier...</label>
+        <select id="supplierId" formControlName="supplierId" class="form-control"  class="custom-select mr-sm-2">
+          <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.id }}, {{ supplier.name }}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <input id="gasRetailerId" placeholder="Id gasRetailer" formControlName="gasRetailerId" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="imageFile">choose image</label>
+        <div class="image-upload">
+          <img [src]="imageUrl" alt="Default Image" class="default-image" (click)="triggerFileInput()" />
+          <input id="imageFile" placeholder="choose image" type="file" (change)="onFileSelected($event)" class="file-input" />
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!selectedFile" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

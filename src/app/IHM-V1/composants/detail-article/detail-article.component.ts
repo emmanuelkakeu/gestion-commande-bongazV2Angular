@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ArticleDto } from '../../../gCmmd-api/src/models/article-dto';
 import { Router } from '@angular/router';
-import { ArticleService } from '../../../gCmmd-api/src/services/article.service';
+import { ArticleService } from '../../services/articles-service';
 import { ImagesService } from '../../services/Image-service';
 import { catchError, of, tap } from 'rxjs';
 
@@ -11,8 +11,8 @@ import { catchError, of, tap } from 'rxjs';
   styleUrls: ['./detail-article.component.css']
 })
 export class DetailArticleComponent implements OnInit {
-  @Input() articleDto: ArticleDto = {};
-  @Output() suppressionResult = new EventEmitter();
+  @Input() articleDto: ArticleDto = { imageUrl: '' };
+  @Output() suppressionResult = new EventEmitter<string>();
   articles: ArticleDto[] = [];
   imageUrl: string = './assets/product.png'; // URL par défaut de l'image
 
@@ -23,7 +23,7 @@ export class DetailArticleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articleService.findAll().pipe(
+    this.articleService.findAllArticles().pipe(
       tap(response => this.articles = response),
       catchError(error => {
         console.error('Erreur lors de la récupération des articles', error);

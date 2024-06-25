@@ -6,6 +6,7 @@ import { DetailArticleComponent } from './composants/detail-article/detail-artic
 import { PageArticleComponent } from './pages/articles/page-article/page-article.component';
 import { InterEntreClientComponent } from './composants/inter-entre-client/inter-entre-client.component';
 import { ArticleFormComponent } from './pages/articles/article-form/article-form.component';
+import { DetailEntrepriseComponent } from './composants/inter-entre-client/detail-entreprise/detail-entreprise.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'vue_entreprise',
         component: InterEntreClientComponent,
+      },
+      {
+        path: 'vue_entreprise/:id',
+        component: DetailEntrepriseComponent,
       },
       {
         path: 'clientVue',

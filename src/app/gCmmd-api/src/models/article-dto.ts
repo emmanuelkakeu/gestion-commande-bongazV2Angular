@@ -1,5 +1,6 @@
 /* tslint:disable */
 export interface ArticleDto {
+  imageUrl: string;
   id?: number;
   codeArticle?: string;
   designation?: string;

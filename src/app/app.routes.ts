@@ -8,6 +8,7 @@ import { DetailArticleComponent } from './IHM-V1/composants/detail-article/detai
 import { PageArticleComponent } from './IHM-V1/pages/articles/page-article/page-article.component';
 import { InterEntreClientComponent } from './IHM-V1/composants/inter-entre-client/inter-entre-client.component';
 import { ArticleFormComponent } from './IHM-V1/pages/articles/article-form/article-form.component';
+import { DetailEntrepriseComponent } from './IHM-V1/composants/inter-entre-client/detail-entreprise/detail-entreprise.component';
 
 const routes: Routes = [
   {
@@ -34,9 +35,14 @@ const routes: Routes = [
         path: 'articles/add_article',
         component: ArticleFormComponent,
       },
+
       {
         path: 'vue_entreprise',
         component: InterEntreClientComponent,
+      },
+      {
+        path: 'vue_entreprise/:supplierId',
+        component: DetailEntrepriseComponent,
       },
       {
         path: 'clientVue',

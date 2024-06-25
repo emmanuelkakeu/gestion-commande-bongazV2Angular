@@ -31,7 +31,7 @@ export class PageArticleComponent implements OnInit {
     this.router.navigate(['/dashboard/articles/add_article']);
   }
 
-  handleSuppression(event: any): void {
+  handleSuppression(event: string): void {
     if (event === 'success') {
       this.findListArticle();
     } else {
