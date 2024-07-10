@@ -1,31 +1,42 @@
 
-<div class="loader:before" *ngIf="!articles || articles.length === 0">
-  <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
-</div>
+    <div class="loader:before" *ngIf="!articles || articles.length === 0">
+      <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
+    </div>
 
-<div class="container-fluid px-2 max-height card horizontal" *ngIf="articles">
-  <div class="row">
-    <h3 class="text-center m-5">Hello ! bien venue chez nous </h3>
-  </div>
- <div class="container" >
-    <div class="row">
-      <div *ngFor="let article of articles " class="col-md-3 col-sm-4 mb-3 " >
-        <div class="card h-100">
-          <div class="card-image">
-            <img [src]="article.imageUrl || './assets/product.png'" class="card-img-top" style="height: 200px;" alt="Image du fournisseur">
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">{{ article.designation }}</h5>
-            <h5 class="card-title"><span class="span">Prix HT :</span><i class="fas fa-dollar-sign blue-color"  style="margin-right: 10px;"></i>{{ article.prixUnitaireHt }}</h5>
-            <h5 class="card-title"><span class="span">Prix TTC :</span><i class="fas fa-dollar-sign blue-color"  style="margin-right: 10px;"></i>{{ article.prixUnitaireTtc }}</h5>
-            <div>
-              <a class="button" [routerLink]="[]">Acheter</a>
-              <a class="button" style="background-color:  orange; color: black;" [routerLink]="[]">Ajouter au panier</a>
+  <div class="container-fluid px-2 max-height card horizontal" *ngIf="articles">
+    <div class="d-flex align-items-center justify-content-center">
+      <h3 class="text-center m-5">Hello ! Bienvenue chez nous</h3>
+      <a class="buttonPanier" [routerLink]="onclick()">
+        Consulter Panier <i class="fa-solid fa-cart-shopping fa-2x ml-2 shopping-cart-icon custom-icon"></i>&nbsp;
+      </a>
+   </div>
+
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let article of articles" class="col-md-3 col-sm-4 mb-3">
+          <div class="card h-100">
+            <div class="card-image">
+              <img [src]="article.imageUrl || './assets/product.png'" class="card-img-top" style="height: 200px;" alt="Image du fournisseur">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title"><span class="span">Nom :</span>{{ article.nameArticle }}</h4>
+              <h5 class="card-title"><span class="span">Prix HT :</span><i class="fas fa-dollar-sign blue-color" style="margin-right: 10px;"></i>{{ article.prixUnitaireHt }}</h5>
+              <h5 class="card-title"><span class="span">Prix TTC :</span><i class="fas fa-dollar-sign blue-color" style="margin-right: 10px;"></i>{{ article.prixUnitaireTtc }}</h5>
+              <div>
+                <a class="button" [routerLink]="['/achat']">Acheter</a> <!-- Exemple de lien, à ajuster selon votre logique -->
+                <a class="button-ajout-panier" (click)="addToCart(article)">Ajouter au panier</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
+
+    <div *ngIf="articlesInCart.length > 0">
+      <h2>Articles dans le panier :</h2>
+      <ul>
+        <li *ngFor="let article of articlesInCart">{{ article.designation }} - {{ article.prixUnitaireTtc }}</li>
+      </ul>
+    </div>
 

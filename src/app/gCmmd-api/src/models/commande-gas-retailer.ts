@@ -9,4 +9,5 @@ export interface CommandeGasRetailer {
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   idGasRetailer?: number;
   ligneCommandeSupplier?: Array<LigneCommandeSupplier>;
+  prixTolalCmmd?:number;
 }

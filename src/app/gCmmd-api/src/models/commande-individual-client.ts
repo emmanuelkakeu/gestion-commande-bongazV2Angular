@@ -9,4 +9,5 @@ export interface CommandeIndividualClient {
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   ligneCommandeIndividualClients?: Array<LigneCommandeIndividualClient>;
   idIndividualClient?: number;
+  prixTolalCmmd?:number;
 }

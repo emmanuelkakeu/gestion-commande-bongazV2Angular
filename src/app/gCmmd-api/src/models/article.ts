@@ -6,12 +6,14 @@ import { LigneCommandeCompanies } from './ligne-commande-companies';
 import { MvtStk } from './mvt-stk';
 export interface Article {
   id?: number;
+  nameArticle?: string;
   creationDate?: number;
   lastModifiedDate?: number;
   codeArticle?: string;
   designation?: string;
   prixUnitaireHt?: number;
   tauxTva?: number;
+  stockInit?:number;
   supplierId?:number|undefined;
   gasRetailerId?:number|undefined;
   prixUnitaireTtc?: number;

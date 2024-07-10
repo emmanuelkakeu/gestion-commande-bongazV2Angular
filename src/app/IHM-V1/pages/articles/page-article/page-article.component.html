@@ -1,27 +1,101 @@
-<div class="max-height">
-  <div class="col">
-    <div class="row m-3">
-      <div class="col-md-8 p-0">
-        <h1 class="text-center">Liste des articles</h1>
+<div *ngIf="!isArticleVueEntrep">
+  <div style="max-height: 800px;">
+    <div class="col">
+      <div class="row m-3">
+        <div class="col-md-8 p-0">
+          <h1 class="text-center">Liste des articles</h1>
+        </div>
+        <div class="col-md-4 text-right">
+          <app-boutton-action (clickEvent)="nouvelArticle()"></app-boutton-action>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMsg">
+          {{ errorMsg }}
+        </div>
       </div>
-      <div class="col-md-4 text-right">
-        <app-boutton-action (clickEvent)="nouvelArticle()"></app-boutton-action>
+      <div class="loader:before" *ngIf="!listArticles || listArticles.length === 0">
+        <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
       </div>
-      <div class="alert alert-danger" *ngIf="errorMsg">
-        {{ errorMsg }}
+      <div class="col m-3">
+        <app-detail-article
+
+          *ngFor="let article of listArticles"
+          [articleDto]="article"
+          (suppressionResult)="handleSuppression($event)"
+        > </app-detail-article>
       </div>
-    </div>
-    <div class="col m-3">
-      <app-detail-article
-        *ngFor="let article of listArticle"
-        [articleDto]="article"
-        (suppressionResult)="handleSuppression($event)"
-      ></app-detail-article>
-    </div>
-    <div class="row mb-3" *ngIf="listArticle.length">
-      <div class="col-md-12 text-center">
-        <app-pagination></app-pagination>
+      <div class="row mb-3" *ngIf="listArticles.length">
+        <div class="col-md-12 text-center">
+          <app-pagination></app-pagination>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- <div *ngIf="isArticleVueEntrep">
+  <div class="max-height">
+    <div class="col">
+      <div class="row m-3">
+        <div class="col-md-8 p-0">
+          <h1 class="text-center">Liste des articles</h1>
+        </div>
+      </div>
+      <div class="col m-3">
+        <div class="loader:before" *ngIf="!articles || articles.length === 0">
+          <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
+        </div>
+
+        <div class="container-fluid px-2 max-height card horizontal" *ngIf="articles">
+          <div class="container">
+            <div class="row">
+              <div *ngFor="let article of articles" class="col-md-3 col-sm-4 mb-3">
+                <div class="card h-100">
+                  <div class="card-image">
+                    <img [src]="article.imageUrl" class="card-img-top" style="height: 200px;" alt="Image du fournisseur">
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-title"><span class="span">Nom :</span>{{ article.designation }}</h4>
+                    <h5 class="card-title"><span class="span">Prix HT :</span><i class="fas fa-dollar-sign blue-color" style="margin-right: 10px;"></i>{{ article.prixUnitaireHt }}</h5>
+                    <h5 class="card-title"><span class="span">Prix TTC :</span><i class="fas fa-dollar-sign blue-color" style="margin-right: 10px;"></i>{{ article.prixUnitaireTtc }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="max-height">
+  <div *ngIf="isArticleVueEntrep">
+    <div class="row m-3">
+      <div class="col-md-8 p-0">
+        <h1 class="text-center">Liste des articles</h1>
+      </div>
+    </div>
+    <div class="loader:before" *ngIf="!articles || articles.length === 0">
+      <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4 g-3 ml-2">
+      <div class="col" *ngFor="let article of articles">
+        <div class="card card-hover" [routerLink]="[article.id]">
+          <img [src]="article.imageUrl" class="card-img-top" alt="Image du fournisseur">
+          <div class="card-body">
+            <h4 class="card-title text-center">{{ article.nameArticle }}</h4>
+            <p class="card-title prix-style" >{{ article.prixUnitaireTtc }},000 FCFA</p>
+            <p class="card-text text">
+              {{ article.designation }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

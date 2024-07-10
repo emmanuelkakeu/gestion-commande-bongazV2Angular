@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h2>{{ isSupplier ? 'Create Supplier' : 'Create Companies' }}</h2>
+
+  <button (click)="toggleType(true)">Supplier</button>
+  <button (click)="toggleType(false)">Companies</button>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+
+    <div >
+      <input id="name" class="form-control" placeholder="Nom" formControlName="name">
+    </div>
+
+    <!-- <div *ngIf="isSupplier">
+      <input id="lastName" class="form-control" placeholder="Prenom" formControlName="lastName">
+    </div> -->
+    <div *ngIf="isSupplier">
+      <input id="firstName" class="form-control" placeholder="Prenom" formControlName="firstName">
+    </div>
+
+    <div>
+      <input id="contactDetails" class="form-control" placeholder="Tel :" formControlName="contactDetails">
+    </div>
+
+    <div>
+      <input id="adresse1" class="form-control" placeholder="Addresse 1" formControlName="adresse1">
+    </div>
+
+    <div>
+      <input id="adresse2" class="form-control" placeholder="Addresse 2 " formControlName="adresse2">
+    </div>
+
+    <div>
+      <input id="ville" class="form-control" placeholder="Ville" formControlName="ville">
+    </div>
+
+    <div>
+      <input id="pays" class="form-control" placeholder="Pays" formControlName="pays">
+    </div>
+
+    <div *ngIf="!isSupplier">
+      <input id="openingHours" class="form-control" placeholder="Heure d'ouverture : Optionnel" formControlName="openingHours">
+    </div>
+
+    <div class="form-group">
+      <label for="imageFile">chooses image</label>
+      <div class="image-upload">
+        <img [src]="imageUrl" alt="Default Image" class="default-image" (click)="triggerFileInput()" />
+        <input id="imageFile" placeholder="choose image" type="file" (change)="onFileSelected($event)" class="file-input" />
+      </div>
+    </div>
+
+    <button type="submit" style="margin-left: 300px;" class="btn-primary">Submit</button>
+  </form>
+</div>

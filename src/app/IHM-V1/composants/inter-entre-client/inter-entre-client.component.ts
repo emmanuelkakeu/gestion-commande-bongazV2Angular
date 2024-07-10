@@ -28,7 +28,7 @@ export class InterEntreClientComponent implements OnInit {
   }
 
   listSuppliers() {
-    this.supplierService.findAll().pipe(
+    this.supplierService.findAllSupplier().pipe(
       tap(response => this.suppliers = response),
       catchError(error => {
         console.error('Erreur lors de la récupération des fournisseurs', error);
@@ -59,7 +59,7 @@ export class InterEntreClientComponent implements OnInit {
   }
 
   getSupplier(id: number) {
-    this.supplierService.findById(id).subscribe({
+    this.supplierService.findSupplierById(id).subscribe({
       next: (response: SupplierDto) => {
         console.log('Détails du fournisseur:', response);
       },
@@ -73,7 +73,7 @@ export class InterEntreClientComponent implements OnInit {
   }
 
   deleteSupplier(id: number) {
-    this.supplierService.delete(id).subscribe({
+    this.supplierService.deleteSupplier(id).subscribe({
       next: () => {
         console.log('Fournisseur supprimé');
       },

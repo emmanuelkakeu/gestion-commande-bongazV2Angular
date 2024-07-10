@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleDto } from '../../../gCmmd-api/src/models/article-dto';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from '../../services/articles-service';
 import { ImagesService } from '../../services/Image-service';
 import { catchError, of, tap } from 'rxjs';
@@ -11,15 +12,21 @@ import { catchError, of, tap } from 'rxjs';
   styleUrls: ['./detail-article.component.css']
 })
 export class DetailArticleComponent implements OnInit {
-  @Input() articleDto: ArticleDto = { imageUrl: '' };
+  @Input() articleDto: ArticleDto = {
+    imageUrl: '',
+    prixUnitaireTtc: 0
+  };
   @Output() suppressionResult = new EventEmitter<string>();
   articles: ArticleDto[] = [];
   imageUrl: string = './assets/product.png'; // URL par défaut de l'image
+  isArticleVueEntrep: boolean = false;
 
   constructor(
+    private route:ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +37,10 @@ export class DetailArticleComponent implements OnInit {
         return of([]); // Retourne un tableau vide ou gère l'erreur selon les besoins
       })
     ).subscribe();
+
+    this.route.url.subscribe(url => {
+      this.isArticleVueEntrep = url.some(segment => segment.path.includes('articleVueEntrep'));
+    });
 
     this.loadImage();
   }
@@ -70,6 +81,22 @@ export class DetailArticleComponent implements OnInit {
       });
     } else {
       console.error('ID de l\'article manquant');
+    }
+  }
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      console.log(`Closed with: ${result}`);
+    }, (reason) => {
+      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === 'Cross click') {
+      return 'by pressing the cross button';
+    } else {
+      return `with: ${reason}`;
     }
   }
 }

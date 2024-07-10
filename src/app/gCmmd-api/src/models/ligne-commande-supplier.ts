@@ -7,7 +7,7 @@ export interface LigneCommandeSupplier {
   lastModifiedDate?: number;
   article?: Article;
   commandeSupplier?: CommandeSupplier;
-  quantite?: number;
-  prixUnitaire?: number;
-  idEntreprise?: number;
+  quantite: number;
+  prixTotalLgn?: number;
+
 }

@@ -46,6 +46,12 @@ export class MenuComponent implements OnInit {
         },
         {
           id: '12',
+          titre: 'artcleVueEntrep',
+          icon: 'fa-solid fa-shop',
+          url: '/dashboard/articleVueEntrep'
+        },
+        {
+          id: '13',
           titre: 'vue-clients',
           icon: 'fa-solid fa-shop',
           url: '/dashboard/clientVue'
@@ -68,7 +74,7 @@ export class MenuComponent implements OnInit {
           id: '22',
           titre: 'Mouvements du stock',
           icon: 'fab fa-stack-overflow',
-          url: 'mvtstk'
+          url: '/dashboard/mvtstk'
         }
       ]
     },
@@ -80,15 +86,15 @@ export class MenuComponent implements OnInit {
       sousMenu: [
         {
           id: '31',
-          titre: 'Clients',
+          titre: 'Companies',
           icon: 'fas fa-users',
-          url: 'clients'
+          url: '/dashboard/Companies'
         },
         {
           id: '32',
           titre: 'Commandes clients',
           icon: 'fas fa-shopping-basket',
-          url: 'commandesclient'
+          url: '/dashboard/commandesclient'
         }
       ]
     },
@@ -102,7 +108,7 @@ export class MenuComponent implements OnInit {
           id: '41',
           titre: 'Fournisseurs',
           icon: 'fas fa-users',
-          url: 'fournisseurs'
+          url: '/dashboard/fournisseurs'
         },
         {
           id: '42',

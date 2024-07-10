@@ -18,7 +18,13 @@ export class ArticleService {
 
     return this.http.post<ArticleDto>(`${this.baseUrl}/create`, formData);
   }
-   findAllArticles(): Observable<ArticleDto[]> {
+
+  findById(articleId: number): Observable<ArticleDto> {
+    return this.http.get<ArticleDto>(`${this.baseUrl}/${articleId}`);
+  }
+
+
+  findAllArticles(): Observable<ArticleDto[]> {
     return this.http.get<ArticleDto[]>(`${this.baseUrl}/all`);
   }
 

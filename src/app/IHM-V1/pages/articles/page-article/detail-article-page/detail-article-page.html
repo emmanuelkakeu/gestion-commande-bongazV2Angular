@@ -1,0 +1,31 @@
+<div *ngIf="article"  style="min-height: 800px; background-color: #e2e2e4;">
+  <div class="section" style="min-height: 750px;">
+    <!-- Image Card -->
+    <div class="col-md-4 " style=" padding-right: 10px; background-color: #e2e2e4;">
+      <div class="card shadow-lg" style="height: 750px; ">
+        <img [src]="article.imageUrl || './assets/product.png'" class="card-img-top" alt="Image du fournisseur">
+      </div>
+    </div>
+
+    <!-- Space between cards -->
+
+
+    <!-- Article Details -->
+    <div section2 >
+      <div  class="card p-4" style="min-height: 750px; text-transform: capitalize;">
+
+        <p class="card-texte"> {{ article.designation }}</p>
+        <h1 class="card-titles">{{ article.nameArticle }}</h1>
+
+
+        <p class="card-texte" class="style-span"> {{ article.prixUnitaireTtc }}  FCFA</p>
+
+        <div class="boutons">
+          <a class="button" [routerLink]="['/achat']">Acheter</a> <!-- Exemple de lien, à ajuster selon votre logique -->
+          <a class="buttonPanier" (click)="addToCart(article)"><i class="fa-solid fa-cart-shopping ">&nbsp;</i>Ajouter au panier</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

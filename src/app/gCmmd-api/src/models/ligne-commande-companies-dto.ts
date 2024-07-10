@@ -4,5 +4,5 @@ export interface LigneCommandeCompaniesDto {
   id?: number;
   articleDto?: ArticleDto;
   quantite?: number;
-  prixUnitaire?: number;
+  prixTotalLgn?: number;
 }

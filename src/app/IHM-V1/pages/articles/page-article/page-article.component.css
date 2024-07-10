@@ -1,0 +1,35 @@
+.card {
+  height: 100%;
+}
+
+.card-img-top {
+  height: 450px;
+
+}
+.ml-2{
+  margin-left: 20px;
+}
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.max-heigth{
+  max-height: 800px;
+  min-height: 800px;
+}
+.prix-style{
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
+  color: black;
+  margin-left: 30px;
+}
+.text{
+  font-size: 20px;
+}

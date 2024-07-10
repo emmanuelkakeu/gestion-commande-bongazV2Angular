@@ -9,4 +9,5 @@ export interface CommandeCompanies {
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   idCompanies?: number;
   ligneCommandeCompanies?: Array<LigneCommandeCompanies>;
+  prixTolalCmmd?:number;
 }

@@ -8,7 +8,7 @@ export interface SupplierDto {
   name?: string;
   lastName?: string;
   contactDetails?: string;
-  adresse?: AdresseDto;
+  adresseDto?: AdresseDto;
   status?: 'ACTIVER' | 'DEACTIVER';
   dateCreated?: string;
   creationDate?: number;

@@ -8,4 +8,5 @@ export interface CommandeGasRetailerDto {
   idGasRetailer?: number;
   ligneCommandeGasRetailers?: Array<LigneCommandeGasRetailer>;
   commandeLivree?: boolean;
+  prixTolalCmmd?:number;
 }

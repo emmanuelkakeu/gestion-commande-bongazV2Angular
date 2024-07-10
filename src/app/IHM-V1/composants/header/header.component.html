@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="connectedUser">
   <div class="col-md-8">
     <div class="input-group flex-nowrap">
       <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
@@ -10,15 +10,20 @@
   <div class="col-md-4">
     <div class="row">
       <div class="col-md-9 text-right">
-        <!-- <span>Bonjour {{connectedUser.nom}}&nbsp;</span> -->
+        <span>Bonjour {{connectedUser.firstName}}&nbsp;</span>
       </div>
-
       <div class="col-md-3">
-        <a href="javascript:void(0);" [routerLink]="['/profil']">
-          <img src="favicon.ico" class="rounded-circle" />
-        </a>
+        <!-- Image cliquable pour ouvrir le champ de fichier -->
+        <img [src]="imageUrl" class="rounded-circle iconProfile" (click)="triggerFileInput()"  />
+        <!-- Champ de fichier caché -->
+        <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" />
       </div>
     </div>
   </div>
 </div>
--
+
+<!-- Section pour permettre la mise à jour de l'image
+<form (ngSubmit)="onSubmitImageUpdate()">
+  <input type="file" (change)="onFileSelected($event)">
+  <button type="submit">Upload Image</button>
+</form> -->

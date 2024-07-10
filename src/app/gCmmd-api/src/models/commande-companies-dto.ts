@@ -8,4 +8,5 @@ export interface CommandeCompaniesDto {
   idCompaniesDto?: number;
   ligneCommandeCompaniesDto?: Array<LigneCommandeCompaniesDto>;
   commandeLivree?: boolean;
+  prixTolalCmmd?:number;
 }

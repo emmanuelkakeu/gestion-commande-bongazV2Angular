@@ -9,4 +9,5 @@ export interface CommandeSupplier {
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   idSupplier?: number;
   ligneCommandeSupplier?: Array<LigneCommandeSupplier>;
+  prixTolalCmmd?:number;
 }

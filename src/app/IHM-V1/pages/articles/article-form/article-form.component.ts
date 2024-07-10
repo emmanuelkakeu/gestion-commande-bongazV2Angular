@@ -22,10 +22,12 @@ export class ArticleFormComponent implements OnInit{
   constructor(private fb: FormBuilder, private articleService: ArticleService, private router: Router, private supplierService:SupplierService) {
     this.articleForm = this.fb.group({
       codeArticle: ['', Validators.required],
+      nameArticle : ['', Validators.required],
       designation: ['', Validators.required],
       prixUnitaireHt: ['', Validators.required],
       tauxTva: ['', Validators.required],
-      prixUnitaireTtc: ['', Validators.required],
+      stockInit:[''],
+      prixUnitaireTtc: [''],
       imageFileName: [''],
       supplierId: [null],
       gasRetailerId: [null]
@@ -35,10 +37,11 @@ export class ArticleFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.listSuppliers();
+    this.listGasRetailer();
   }
 
   listSuppliers() {
-    this.supplierService.findAll().pipe(
+    this.supplierService.findAllSupplier().pipe(
       tap(response => this.suppliers = response),
       catchError(error => {
         console.error('Erreur lors de la récupération des fournisseurs', error);
@@ -49,7 +52,7 @@ export class ArticleFormComponent implements OnInit{
     });
   }
   listGasRetailer() {
-    this.supplierService.findAll().pipe(
+    this.supplierService.findAllSupplier().pipe(
       tap(response => this.suppliers = response),
       catchError(error => {
         console.error('Erreur lors de la récupération des fournisseurs', error);
@@ -82,7 +85,7 @@ export class ArticleFormComponent implements OnInit{
   onSubmit(): void {
     if (this.articleForm.valid && this.selectedFile) {
       const article: ArticleDto = this.articleForm.value;
-      console.log('Article:', article); // Log the article data
+      console.log('Article:', article); // Vérifiez ici que nameArticle n'est pas null
       console.log('Selected File:', this.selectedFile); // Log the selected file
 
       this.articleService.createArticle(article, this.selectedFile).subscribe({

@@ -8,5 +8,5 @@ export interface LigneCommandeIndividualClient {
   article?: Article;
   commandeIndividualClient?: CommandeIndividualClient;
   quantite?: number;
-  prixUnitaire?: number;
+  prixTotalLgn?: number;
 }

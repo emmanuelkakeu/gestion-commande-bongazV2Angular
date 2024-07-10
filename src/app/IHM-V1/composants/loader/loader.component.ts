@@ -29,3 +29,5 @@ export class LoaderComponent implements OnInit, OnDestroy {
   }
 
 }
+
+export { LoaderService };

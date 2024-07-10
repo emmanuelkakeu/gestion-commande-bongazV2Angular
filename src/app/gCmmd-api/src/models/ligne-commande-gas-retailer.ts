@@ -8,5 +8,5 @@ export interface LigneCommandeGasRetailer {
   article?: Article;
   commandeGasRetailer?: CommandeGasRetailer;
   quantite?: number;
-  prixUnitaire?: number;
+  prixTotalLgn?: number;
 }

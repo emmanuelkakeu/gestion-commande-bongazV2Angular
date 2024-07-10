@@ -1,0 +1,8 @@
+<form (ngSubmit)="verifyOtp()">
+  <label for="username">Email:</label>
+  <input type="email" id="username" [(ngModel)]="otpRequest.username" name="username" required>
+  <label for="otp">OTP:</label>
+  <input type="text" id="otp" [(ngModel)]="otpRequest.otp" name="otp" required>
+  <button type="submit">Vérifier OTP</button>
+</form>
+

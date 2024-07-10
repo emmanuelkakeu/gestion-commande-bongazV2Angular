@@ -8,5 +8,5 @@ export interface LigneCommandeCompanies {
   article?: Article;
   commandeCompanies?: CommandeCompanies;
   quantite?: number;
-  prixUnitaire?: number;
+  prixTotalLgn?: number;
 }
