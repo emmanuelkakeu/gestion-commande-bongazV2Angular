@@ -49,6 +49,7 @@ import { NouveauSupplierCompaniesComponent } from './composants/nouveau-supplier
 import { PagesLoginComponentComponent } from './pages/pages-login-component/pages-login-component.component';
 import { UserService } from './services/users-service';
 import { AuthInterceptor } from './auth-interceptor';
+import { MapComponent } from './composants/map/map.component';
 
 @NgModule({
   declarations: [
@@ -75,12 +76,14 @@ import { AuthInterceptor } from './auth-interceptor';
     PagesSupplierComponent,
     DetailClsFrsComponent,
     NouveauSupplierCompaniesComponent,
+    MapComponent
 
   ],
   imports:  [
     CommonModule,
     AccordionModule.forRoot(),
     AppRoutingIhmV1Module,
+    
     ApiModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -118,7 +121,8 @@ import { AuthInterceptor } from './auth-interceptor';
     PagesIndividualClientComponent,
     PagesSupplierComponent,
     DetailClsFrsComponent,
-    NouveauSupplierCompaniesComponent
+    NouveauSupplierCompaniesComponent,
+    MapComponent
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -17,7 +17,7 @@ export class PagesLoginComponentComponent {
     username: '',
     password: ''
   };
-  
+
 
   constructor(private userService: UserService,
     private router: Router,
@@ -38,6 +38,7 @@ export class PagesLoginComponentComponent {
           if (response.data && response.data.user) {
             this.userService.setConnectedUser(response.data.user);
             console.log('Utilisateur connecté:', response.data.user);
+            this.router.navigate(['map']);
           } else {
             console.log('Erreur: Aucune information utilisateur reçue.');
           }
