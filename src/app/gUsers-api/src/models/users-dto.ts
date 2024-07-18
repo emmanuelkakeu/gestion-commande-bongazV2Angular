@@ -1,6 +1,4 @@
 
-
-
 import { AdresseDto } from './adresse-dto';
 import { Status } from './enums/statut';
 import { Role } from './role';
@@ -19,6 +17,8 @@ export class UsersDto {
   imageFileName: string;
   role: Role;
   typeUtilisateur: string;
+  latitude:number;
+  longitude:number;
 
   // constructor(
   //   id: number = 0,
@@ -44,7 +44,6 @@ export class UsersDto {
   //   this.password = password;
   //   this.contactDetails = contactDetails;
   //   this.status = status;
-  //   this.dateCreated = dateCreated;
   //   this.imageFileName = imageFileName;
   //   this.role = role;
   //   this.typeUtilisateur = typeUtilisateur;

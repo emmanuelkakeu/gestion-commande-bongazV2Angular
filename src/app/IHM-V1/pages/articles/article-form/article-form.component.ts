@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { SupplierService } from '../../../services/supplier.service';
 import { SupplierDto } from '../../../../gUsers-api/src/models/supplier-dto';
 import { catchError, tap } from 'rxjs/operators';
+import { GasRetailerDto } from '../../../../gUsers-api/src/models';
+import { GasRetailerService } from '../../../services/gas-retailer.service';
 
 @Component({
   selector: 'app-article-form',
@@ -18,8 +20,13 @@ export class ArticleFormComponent implements OnInit{
   selectedFile: File | null = null;
   imageUrl: string = 'assets/product.png'; // chemin de votre image par défaut
   suppliers: SupplierDto[] = [];
+  gasRetailers: GasRetailerDto[] = [];
 
-  constructor(private fb: FormBuilder, private articleService: ArticleService, private router: Router, private supplierService:SupplierService) {
+  constructor(private fb: FormBuilder,
+    private articleService: ArticleService,
+    private router: Router,
+    private supplierService:SupplierService,
+    private gasRetailerService:GasRetailerService) {
     this.articleForm = this.fb.group({
       codeArticle: ['', Validators.required],
       nameArticle : ['', Validators.required],
@@ -52,10 +59,10 @@ export class ArticleFormComponent implements OnInit{
     });
   }
   listGasRetailer() {
-    this.supplierService.findAllSupplier().pipe(
-      tap(response => this.suppliers = response),
+    this.gasRetailerService.findAllRetailer().pipe(
+      tap(response => this.gasRetailers = response),
       catchError(error => {
-        console.error('Erreur lors de la récupération des fournisseurs', error);
+        console.error('Erreur lors de la récupération des detaillants de gaz', error);
         return [];
       })
     ).subscribe(() => {

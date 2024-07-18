@@ -15,6 +15,8 @@ import {retry} from 'rxjs/operators';
 })
 export class UserService {
 
+  private connectedUser:UsersDto;
+
   constructor(
     // private authenticationService: AuthenticationService,
     private utilisateurService: UsersApiService,
@@ -45,7 +47,7 @@ export class UserService {
     if (localStorage.getItem('connectedUser')) {
       return JSON.parse(localStorage.getItem('connectedUser') as string);
     }
-    return {};
+    return this.connectedUser;
   }
 
   // changerMotDePasse(changerMotDePasseDto: ChangerMotDePasseUtilisateurDto): Observable<ChangerMotDePasseUtilisateurDto> {

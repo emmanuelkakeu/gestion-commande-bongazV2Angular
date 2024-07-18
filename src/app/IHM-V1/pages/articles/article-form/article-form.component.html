@@ -76,11 +76,13 @@
           <option *ngFor="let supplier of suppliers" [value]="supplier.id">{{ supplier.id }}, {{ supplier.name }}</option>
         </select>
       </div>
-
-
       <div class="form-group">
-        <input id="gasRetailerId" placeholder="Id gasRetailer" formControlName="gasRetailerId" type="number" class="form-control" />
+        <label for="gasRetailerId">Choose gasRetailer...</label>
+        <select id="gasRetailerId" formControlName="gasRetailerId" class="form-control"  class="custom-select mr-sm-2">
+          <option *ngFor="let gasRetailer of gasRetailers " [value]="gasRetailer.id">{{ gasRetailer.id }}, {{ gasRetailer.name }}</option>
+        </select>
       </div>
+
 
       <div class="form-group">
         <label for="imageFile">choose image</label>
@@ -94,3 +96,8 @@
     </div>
   </form>
 </div>
+
+
+<!-- <div class="form-group">
+  <input id="gasRetailerId" placeholder="Id gasRetailer" formControlName="gasRetailerId" type="number" class="form-control" />
+</div> -->

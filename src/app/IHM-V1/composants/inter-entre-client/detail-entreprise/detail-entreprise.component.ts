@@ -15,9 +15,10 @@ import { CartService } from '../../../composants/inter-entre-client/card/card-se
 export class DetailEntrepriseComponent implements OnInit, OnDestroy {
 
   articles: ArticleDto[] = [];
-  articlesInCart: ArticleDto[] = []; // Tableau pour stocker les articles ajoutés au panier
+  articlesInCart: ArticleDto[] = [];
   private subscription: Subscription | undefined;
   supplierId: string | null = null;
+  gasRetailerId: string | null = null;
 
   constructor(
     private cartService : CartService,
@@ -29,21 +30,33 @@ export class DetailEntrepriseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.supplierId = this.route.snapshot.paramMap.get('supplierId');
-    console.log('Supplier ID from route:', this.supplierId); // Vérification de l'ID du fournisseur
+    console.log('Supplier ID from route:', this.supplierId);
+
+    this.gasRetailerId = this.route.snapshot.paramMap.get('gasRetailerId');
+    console.log('Supplier ID from route:', this.gasRetailerId);
 
     if (this.supplierId) {
       this.subscription = this.articleService.findBySupplierId(+this.supplierId).subscribe({
         next: (articles: ArticleDto[]) => {
-          console.log('Articles received from service:', articles); // Vérification des articles reçus
+          console.log('Articles received from service:', articles);
           this.articles = articles;
-          this.loadImagesForArticles(); // Charger les images après avoir assigné les articles
+          this.loadImagesForArticles();
         },
         error: (error) => {
           console.error('Error fetching articles:', error);
         }
       });
     } else {
-      console.log('Supplier ID is null');
+      this.subscription = this.articleService.findByGasRetailerId(+this.gasRetailerId!).subscribe({
+        next: (articles: ArticleDto[]) => {
+          console.log('Articles received from service:', articles);
+          this.articles = articles;
+          this.loadImagesForArticles();
+        },
+        error: (error) => {
+          console.error('Error fetching articles:', error);
+        }
+      });
     }
   }
 

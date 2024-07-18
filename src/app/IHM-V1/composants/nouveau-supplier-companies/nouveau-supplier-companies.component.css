@@ -4,10 +4,10 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f6f9fb;
+  background-color:#fbdfd6;
 }
 
-.form-container {
+/* .form-container {
   width: 100%;
   height: 750px;
   max-width: 600px;
@@ -19,7 +19,7 @@ body, html {
   margin-bottom: 70px;
   margin-top: 30px;
 
-}
+} */
 
 .form-control {
   width: 100%;
@@ -55,4 +55,59 @@ body, html {
   color: white;
   font-size: large;
   background-color: #4649ad;
+}
+
+
+
+
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.containerdiv{
+  background-color:#e9e2de;
+}
+
+.containerr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Espace entre la carte et le formulaire */
+  padding: 20px;
+  background-color: whitesmoke;
+  box-shadow: -10px 0 70px 100px  #e8c3bc;
+  margin: auto 150px;
+}
+
+.map-container {
+  flex: 1;
+  height: 750px;
+  margin-left: 70px;
+  width: 800px;
+}
+
+
+.form-container {
+  flex: 1;
+  max-width: 700px;
+  border: solid 1px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color:whitesmoke;
+  box-shadow: 0 0 70px 50px #e9e2db; /* Ajoute une ombre avec une légère déviation */
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.form-row .form-group {
+  flex: 1 0 50%;
+  padding-right: 5px;
+  padding-left: 5px;
 }

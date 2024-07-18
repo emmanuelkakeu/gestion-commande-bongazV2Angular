@@ -1,5 +1,3 @@
-// Dans votre fichier AppModuleIhmV1 (app.module-ihm-v1.ts)
-
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingIhmV1Module } from './App-routing-ihm.module';
@@ -14,17 +12,16 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-
 import { CompaniesService } from '../../app/gUsers-api/src/services/companies.service';
 import { DeliveryPersonApiService } from '../../app/gUsers-api/src/services/delivery-person-api.service';
 import { GasRetailerApiService } from '../../app/gUsers-api/src/services/gas-retailer-api.service';
 import { IndividualClientApiService } from '../../app/gUsers-api/src/services/individual-client-api.service';
 import { SupplierApiService } from '../../app/gUsers-api/src/services/supplier-api.service';
 import { UsersApiService } from '../../app/gUsers-api/src/services/users-api.service';
-import {PageRegisterComponent} from './pages/page-register/page-register.component'
+import { PageRegisterComponent } from './pages/page-register/page-register.component';
 
 import { DetailArticleComponent } from './composants/detail-article/detail-article.component';
-import { BouttonActionComponent } from './composants/boutton-action/boutton-action.component'; // Assurez-vous que c'est importé ici
+import { BouttonActionComponent } from './composants/boutton-action/boutton-action.component';
 import { PaginationComponent } from './composants/pagination/pagination.component';
 import { ApiModule } from '../gCmmd-api/src/api.module';
 import { PageArticleComponent } from './pages/articles/page-article/page-article.component';
@@ -49,7 +46,8 @@ import { NouveauSupplierCompaniesComponent } from './composants/nouveau-supplier
 import { PagesLoginComponentComponent } from './pages/pages-login-component/pages-login-component.component';
 import { UserService } from './services/users-service';
 import { AuthInterceptor } from './auth-interceptor';
-import { MapComponent } from './composants/map/map.component';
+import { MapComponent } from './composants/map/map.component'; // Assurez-vous que c'est importé ici
+import { ListGasRetailerComponent } from './composants/list-gas-retailer/list-gas-retailer.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +63,7 @@ import { MapComponent } from './composants/map/map.component';
     InterEntreClientComponent,
     ArticleFormComponent,
     DetailEntrepriseComponent,
+    ListGasRetailerComponent,
     CardComponent,
     DetailArticlePage,
     PageMvtstkComponent,
@@ -77,13 +76,11 @@ import { MapComponent } from './composants/map/map.component';
     DetailClsFrsComponent,
     NouveauSupplierCompaniesComponent,
     MapComponent
-
   ],
-  imports:  [
+  imports: [
     CommonModule,
     AccordionModule.forRoot(),
     AppRoutingIhmV1Module,
-    
     ApiModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -96,7 +93,6 @@ import { MapComponent } from './composants/map/map.component';
       multi: true
     }
   ],
-
   exports: [
     IhmV1Component,
     HttpClientModule,
@@ -104,13 +100,13 @@ import { MapComponent } from './composants/map/map.component';
     MenuComponent,
     LoaderComponent,
     HeaderComponent,
-
     DetailArticleComponent,
-    BouttonActionComponent, // Assurez-vous que c'est exporté si nécessaire
+    BouttonActionComponent,
     PaginationComponent,
     InterEntreClientComponent,
     ArticleFormComponent,
     DetailEntrepriseComponent,
+    ListGasRetailerComponent,
     CardComponent,
     DetailArticlePage,
     PageMvtstkComponent,
@@ -124,8 +120,6 @@ import { MapComponent } from './composants/map/map.component';
     NouveauSupplierCompaniesComponent,
     MapComponent
   ],
-
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
 })
 export class AppModuleIhmV1 {}

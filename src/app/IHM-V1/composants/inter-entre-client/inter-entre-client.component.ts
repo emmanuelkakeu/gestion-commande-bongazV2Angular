@@ -12,7 +12,9 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class InterEntreClientComponent implements OnInit {
   @Input() supplierDto: SupplierDto = {
-    imageUrl: ''
+    imageUrl: '',
+    latitude: 0,
+    longitude: 0
   };
   @Output() suppressionResult = new EventEmitter();
   suppliers: SupplierDto[] = [];

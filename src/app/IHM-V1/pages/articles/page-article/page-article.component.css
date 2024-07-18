@@ -33,3 +33,30 @@
 .text{
   font-size: 20px;
 }
+.searchcss {
+  margin-top: 6px;
+  margin-left: 300px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+  .max-height .searchcss .input-group {
+  width: 600px;
+  margin-left: 300px; /* Ajustez cette valeur selon vos besoins pour réduire la largeur */
+}
+
+.searchcss .input-group .form-control {
+  width: 100%;
+  padding: 20px auto; /* Assurez-vous que l'input prend toute la largeur du groupe d'entrée */
+}
+.searchcss .input-group-prepend .input-group-text .input-group-text .fas fa-search{
+  padding: 22px auto;
+  border: solid 3px
+}
+
+.search-icon {
+  font-size: 23px;
+  border-style: solid 2px;
+  margin-left: 6px;
+  margin-top: 6px; /* Ajustez cette valeur selon vos besoins pour augmenter la taille de l'icône */
+}

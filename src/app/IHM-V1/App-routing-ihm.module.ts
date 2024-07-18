@@ -16,6 +16,7 @@ import { PageRegisterComponent } from './pages/page-register/page-register.compo
 import { PagesLoginComponentComponent } from './pages/pages-login-component/pages-login-component.component';
 import { PagesVerifyOtpComponentComponent } from './pages/pages-verify-otp-component/pages-verify-otp-component.component';
 import { MapComponent } from './composants/map/map.component';
+import { ListGasRetailerComponent } from './composants/list-gas-retailer/list-gas-retailer.component';
 
 const routes: Routes = [
   {
@@ -77,7 +78,15 @@ const routes: Routes = [
 
       {
         path: 'clientVue',
-        component: InterEntreClientComponent,
+        component:  ListGasRetailerComponent,
+      },
+      {
+        path: 'clientVue/:gasRetailerId',
+        component: DetailEntrepriseComponent,
+      },
+      {
+        path: 'clientVue/:gasRetailerId/card',
+        component: CardComponent,
       },
 
 

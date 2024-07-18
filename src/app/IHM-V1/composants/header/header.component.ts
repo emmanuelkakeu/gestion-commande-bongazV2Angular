@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { UsersDto } from '../../../gUsers-api/src/models/users-dto';
 import { UserService } from '../../services/users-service';
 import { Status } from '../../../gUsers-api/src/models/enums/statut';
@@ -15,6 +15,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  searchQuery: string = '';
+
+  @Output() searchEvent = new EventEmitter<string>();
+
   connectedUser: UsersDto = {
     id: 0,
     firstName: '',
@@ -28,7 +32,9 @@ export class HeaderComponent implements OnInit {
     dateCreated: new Date(),
     imageFileName: '',
     role: new Role(),
-    typeUtilisateur: ''
+    typeUtilisateur: '',
+    latitude: 0,
+    longitude: 0
   };
   selectedFile: File | null = null;
   imageUrl: string = 'favicon.ico';
@@ -44,6 +50,11 @@ export class HeaderComponent implements OnInit {
       this.connectedUser = user;
       this.loadImage();
     }
+  }
+
+
+  onSearch(): void {
+    this.searchEvent.emit(this.searchQuery);
   }
 
   loadImage(): void {

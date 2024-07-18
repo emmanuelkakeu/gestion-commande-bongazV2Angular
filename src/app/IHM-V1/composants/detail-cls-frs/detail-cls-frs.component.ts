@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SupplierDto } from '../../../gUsers-api/src/models/supplier-dto';
 import { CompaniesDto } from '../../../gUsers-api/src/models/companies-dto';
 import { SupplierService } from '../../services/supplier.service';
+import { GasRetailerDto } from '../../../gUsers-api/src/models/gas-retailer-dto';
 
 @Component({
   selector: 'app-detail-cls-frs',
@@ -13,7 +14,7 @@ import { SupplierService } from '../../services/supplier.service';
 export class DetailClsFrsComponent implements OnInit {
 
   @Input() origin: string = '';
-  @Input() clientSupplier: SupplierDto | CompaniesDto = {};
+  @Input() clientSupplier: SupplierDto | CompaniesDto | GasRetailerDto = {};
   @Output() suppressionResult = new EventEmitter();
   imageUrl: string = './assets/product.png';
 

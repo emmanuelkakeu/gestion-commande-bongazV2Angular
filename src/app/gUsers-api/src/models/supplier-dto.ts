@@ -13,4 +13,6 @@ export interface SupplierDto {
   dateCreated?: string;
   creationDate?: number;
   imageFileName?: string;
+  latitude:number;
+  longitude:number;
 }

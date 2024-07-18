@@ -68,34 +68,43 @@
   </div>
 </div> -->
 
-
 <div class="max-height">
+  <div class="col-md-8 searchcss">
+    <div class="input-group flex-nowrap">
+      <input type="text" class="form-control" placeholder="Recherche de produit..." aria-label="search product..." aria-describedby="addon-wrapping" [formControl]="searchControl">
+      <div class="input-group-prependd">
+        <span class="input-group-textt" id="addon-wrapping"><i class="fas fa-search search-icon"></i></span>
+      </div>
+    </div>
+  </div>
+
+
+
   <div *ngIf="isArticleVueEntrep">
     <div class="row m-3">
       <div class="col-md-8 p-0">
         <h1 class="text-center">Liste des articles</h1>
       </div>
     </div>
-    <div class="loader:before" *ngIf="!articles || articles.length === 0">
+
+    <div class="loader:before" *ngIf="(filteredArticles$ | async)?.length === 0">
       <h1 class="text-center" style="color: blue;">Aucun article trouvé.</h1>
+
+
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-3 ml-2">
-      <div class="col" *ngFor="let article of articles">
+      <div class="col" *ngFor="let article of filteredArticles$ | async ">
         <div class="card card-hover" [routerLink]="[article.id]">
           <img [src]="article.imageUrl" class="card-img-top" alt="Image du fournisseur">
           <div class="card-body">
             <h4 class="card-title text-center">{{ article.nameArticle }}</h4>
-            <p class="card-title prix-style" >{{ article.prixUnitaireTtc }},000 FCFA</p>
-            <p class="card-text text">
-              {{ article.designation }}
-            </p>
+            <p class="card-title prix-style">{{ article.prixUnitaireTtc }},000 FCFA</p>
+            <p class="card-text text">{{ article.designation }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
 
