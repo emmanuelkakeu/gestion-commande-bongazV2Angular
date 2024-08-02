@@ -1,0 +1,85 @@
+.card {
+  height: 100%;
+}
+
+.card-img-top {
+  height: 450px;
+
+}
+.ml-2{
+  margin-left: 20px;
+}
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.max-heigth{
+  max-height: 800px;
+  min-height: 800px;
+}
+.prix-style{
+  font-size: 30px;
+
+  font-family: fantasy;
+  letter-spacing: 2px;
+  color: #151c1c;
+  margin-left: 50px;
+}
+.text-center{
+  font-size: 35px;
+  color: #545654;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.text{
+  font-size: 20px;
+color: #350e0c;
+  font-family: 'Times New Roman', Times, serif;
+}
+.searchcss {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  margin-left: 500px;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.searchcss .input-group {
+  box-shadow: 0px 0px 20px #b8eef2;
+  width: 600px;
+  border-radius: 18px 0 0 18px;
+  margin-left: 300px; /* Ajustez cette valeur selon vos besoins pour réduire la largeur */
+}
+
+
+.searchcss .input-group .form-control {
+  border: solid 1px  ;
+  border-color: #62dde4;
+  width: 100%;
+  padding: 20px auto; /* Assurez-vous que l'input prend toute la largeur du groupe d'entrée */
+}
+.searchcss .input-group-prependd .input-group-textt  {
+  padding: 6px 8px 10px 8px;
+  border-top: solid 1px;
+  border-right: solid 1px;
+  border-bottom: solid 1px;
+  border-left: solid 0px;
+  border-color: #62dde4;
+
+}
+
+.search-icon {
+  font-size: 23px;
+
+  border-style: solid 2px;
+  margin-left: 7px;
+  margin-top: 4px; /* Ajustez cette valeur selon vos besoins pour augmenter la taille de l'icône */
+}

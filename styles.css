@@ -1,0 +1,145 @@
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+body {
+  background-color: #eff2f5 !important;
+}
+
+.backgroung-grey {
+  background-color: #eff2f5 !important;
+}
+.border-none {
+  border: none !important;
+}
+
+.min-height-80 {
+  min-height: 80px;
+}
+
+.custom-border-right {
+  border-right: 2px solid #9ca1a6 !important; ;
+}
+.custom-border {
+  border: solid #9ca1a6;
+  border-radius: 5px;
+}
+.blue-color {
+  color: #037bfe;
+
+}
+/* .button{
+  padding: 50 30px;
+  border-radius: 5px;
+  border: solid 1px;
+  background-color: rgb(af, ff, 143);
+  margin: 0 25px;
+  text-decoration: none;
+} */
+
+.hidden {
+  display: none;
+}
+
+.loader-overlay {
+  position: absolute;
+  width: 100%;
+  z-index: 500000;
+  top: 0;
+  /* animation: loading 2s linear infinite; */
+}
+
+.loader {
+
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+  max-height: 900px; /* Ajustez cette valeur selon vos besoins */
+  overflow-y: auto;
+  /* animation: loading 2s linear infinite; */
+}
+
+
+.loaders{
+  animation: loading 2s linear infinite;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 10px;
+  background-color: #007bff;
+
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+#posts {
+  margin: 20px 0;
+  list-style-type: none;
+}
+
+#about {
+  margin: 20px;
+}
+
+.alerts {
+  margin: 20px 0;
+  color: red;
+}
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  color: #fff;
+  background-color: #007bff; /* Couleur de fond bleue */
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Couleur de fond bleue foncée au survol */
+}
+
+.button:active {
+  background-color: #004085; /* Couleur de fond bleue encore plus foncée au clic */
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ajout d'un ombrage bleu au focus */
+}
+.span {
+  font-style: italic;
+  margin-right: 20px;
+}

@@ -1,0 +1,23 @@
+<div class=" background-grey" >
+  <div class="row min-height-600 no-flex-wrap"  >
+    <!-- Sidebar (app-menu) -->
+    <div class="col-md-2 pl-0 pr-0 sidebar" [ngClass]="{'collapsed': collapsed}"  style="margin: 0, 70px;">
+      <app-menu (toggle)="onSidebarToggle($event)"></app-menu>
+    </div>
+    <!-- Main content area -->
+    <div class="col-md-10 pl-0 pr-0 content-area" [ngClass]="{'collapsed': collapsed}">
+      <div class="d-flex flex-column">
+        <div class="card p-3 mb-2" style="background-color:white">
+          <app-header></app-header>
+        </div>
+        <div class="card mb-2 loader app-loader-css"  >
+          <app-loader  ></app-loader >
+          <router-outlet ></router-outlet>
+        </div>
+        <div class="card min-height-80">
+          footer
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

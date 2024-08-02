@@ -1,0 +1,31 @@
+<form (ngSubmit)="register()">
+
+
+
+
+  <input type="text" id="name" [(ngModel)]="user.name" name="name" required placeholder="Nom:">
+
+
+  <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required placeholder="Prénom:">
+
+
+
+  <input type="email" id="email" [(ngModel)]="user.email" name="email" required placeholder="E-mail:">
+
+
+  <input type="password" id="password" [(ngModel)]="user.password" name="password" required placeholder="Mot de passe:">
+
+  <input type="text" id="contactDetails" [(ngModel)]="user.contactDetails" name="contactDetails" placeholder="Tel:">
+
+  <label>Quelle utilisateurs ete vous ? :</label>
+  <div>
+    <input type="radio" id="individualclient" [(ngModel)]="user.typeUtilisateur" name="typeUtilisateur" value="individualclient" required>
+    <label for="individualclient">Client simple</label>
+  </div>
+  <div>
+    <input type="radio" id="companies" [(ngModel)]="user.typeUtilisateur" name="typeUtilisateur" value="companies">
+    <label for="companies">  Cliente entreprise</label>
+  </div>
+
+  <button type="submit">S'inscrire</button>
+</form>

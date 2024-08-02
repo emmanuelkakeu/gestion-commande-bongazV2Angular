@@ -1,0 +1,52 @@
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group button {
+  border-radius: 0;
+}
+
+.input-group input {
+  max-width: 60px;
+  text-align: center;
+}
+
+.css-bouton-update{
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 40px;
+  margin-left: 10px;
+
+}
+
+.increment-btn, .decrement-btn {
+  height: 20px;
+  background-color: #4be844;
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 3px;
+  padding-right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decrement-btn {
+  background-color: #f398ac;
+
+}
+
+.table thead th,
+.table tbody td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* .text-right{
+  justify-content: center;
+  justify-items: center;
+} */

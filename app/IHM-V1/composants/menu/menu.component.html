@@ -1,0 +1,22 @@
+<div class="sidebar" [ngClass]="{'collapsed': collapsed}">
+  <div class="collapse-button" (click)="toggleCollapse()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="menu-list">
+    <li *ngFor="let menu of menuProperties" [ngClass]="{'active': menu.active}">
+      <a (click)="toggleMenu(menu)" class="menu-item">
+        <i class="{{menu.icon}}"></i>
+        <span *ngIf="!collapsed">{{menu.titre}}</span>
+        <i *ngIf="menu.sousMenu && !collapsed" class="fas fa-chevron-right chevron" [@rotateChevron]="getChevronState(menu)"></i>
+      </a>
+      <ul *ngIf="menu.sousMenu && menu.active && !collapsed" class="submenu">
+        <li *ngFor="let sousMenu of menu.sousMenu">
+          <a (click)="navigate(sousMenu)">
+            <i class="{{sousMenu.icon}}"></i>
+            <span>{{sousMenu.titre}}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

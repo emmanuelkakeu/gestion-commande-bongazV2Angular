@@ -1,0 +1,5 @@
+/* loader.component.scss */
+.loader-container {
+  max-height: 600px; /* Ajustez cette valeur selon vos besoins */
+  overflow-y: auto; /* Active le défilement vertical si le contenu dépasse la hauteur maximale */
+}

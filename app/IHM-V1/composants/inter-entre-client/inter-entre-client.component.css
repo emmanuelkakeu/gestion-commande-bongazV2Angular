@@ -1,0 +1,16 @@
+.my-custom-card {
+  margin-bottom: 20px; /* Adjust this value as needed */
+}
+.max-heihg{
+  min-height: 800px;
+}
+.card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+

@@ -1,0 +1,60 @@
+
+.containers{
+  min-height: 800px;
+}
+
+.custom-icon {
+  color: #007bff;
+  margin-left: 100px;
+}
+.buttonPanier {
+  padding: 15px 20px;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: orange;
+  color: black;
+  border-radius: 5px;
+  transition: all 0.3s ease; /* Transition pour les effets */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+  display: inline-flex;
+  align-items: center;
+}
+
+.buttonPanier:hover {
+  background-color: #ff9800; /* Couleur au survol */
+  transform: translateY(-2px); /* Effet de déplacement vers le haut */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Ombre augmentée */
+}
+
+.buttonPanier i {
+  margin-left: 8px; /* Espacement de l'icône */
+}
+
+
+.button-ajout-panier {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  color: #fff;
+  background-color: #FFA500; /* Couleur de fond bleue */
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.button-ajout-panier:hover {
+  background-color: #FFD700; /* Couleur de fond bleue foncée au survol */
+}
+
+.button-ajout-panier:active {
+  background-color: #FF8C00; /* Couleur de fond bleue encore plus foncée au clic */
+}
+
+.button-ajout-panier:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ajout d'un ombrage bleu au focus */
+}

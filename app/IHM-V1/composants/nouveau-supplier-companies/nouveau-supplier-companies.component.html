@@ -1,0 +1,81 @@
+
+<div class="containerdiv">
+  <div class="containerr">
+
+    <div class="form-container">
+      <h2>{{ isSupplier ? 'Create Supplier' : isGasRetailer ? 'Create Gas Retailer' : isIndividualClient ? 'Create Individual Client' : 'Create Companies' }}</h2>
+
+      <!-- Boutons de sélection de type d'utilisateur -->
+      <button (click)="toggleType(true, false, false)">Supplier</button>
+      <button (click)="toggleType(false, true, false)">Gas Retailer</button>
+      <button (click)="toggleType(false, false, true)">Individual Client</button>
+      <button (click)="toggleType(false, false, false)">Companies</button>
+
+      <!-- Formulaire de création d'utilisateur -->
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <!-- Champs du formulaire -->
+        <div>
+          <input id="name" class="form-control" placeholder="Nom" formControlName="name">
+        </div>
+        <div *ngIf="isSupplier || isGasRetailer || isIndividualClient">
+          <input id="firstName" class="form-control" placeholder="Prenom" formControlName="firstName">
+        </div>
+        <div>
+          <input id="email" class="form-control" placeholder="Email" formControlName="email">
+        </div>
+        <div>
+          <input id="password" class="form-control" placeholder="Mot de passe" formControlName="password" type="password">
+        </div>
+        <div>
+          <input id="contactDetails" class="form-control" placeholder="Tel :" formControlName="contactDetails">
+        </div>
+        <div *ngIf="!isSupplier && !isIndividualClient">
+          <input id="openingHours" class="form-control" placeholder="Heure d'ouverture : Optionnel" formControlName="openingHours">
+        </div>
+        <div>
+          <input id="adresse1" class="form-control" placeholder="Adresse 1" formControlName="adresse1">
+        </div>
+        <div>
+          <input id="adresse2" class="form-control" placeholder="Adresse 2" formControlName="adresse2">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <input id="ville" class="form-control" placeholder="Ville" formControlName="ville">
+          </div>
+          <div class="form-group">
+            <input id="pays" class="form-control" placeholder="Pays" formControlName="pays">
+          </div>
+
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input id="longitude" formControlName="longitude" class="form-control" [value]="form.get('longitude')?.value" placeholder="Longitude">
+          </div>
+          <div class="form-group">
+            <input id="latitude" formControlName="latitude" class="form-control" [value]="form.get('latitude')?.value" placeholder="Latitude">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="button" (click)="openMap()">Open Map</button>
+        </div>
+
+        <div class="form-group">
+          <label for="imageFile">choisir une image</label>
+          <div class="image-upload">
+            <img [src]="imageUrl" alt="Default Image" class="default-image" (click)="triggerFileInput()" />
+            <input id="imageFile" placeholder="choisir une image" type="file" (change)="onFileSelected($event)" class="file-input" />
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div id="map-container" class="map-container" style="display: none;">
+      <div id="map"></div>
+      <button (click)="closeMap()">Close Map</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,6 @@
+#map {
+  height: 600px; /* Ajustez la hauteur selon vos besoins */
+  width: 100%; /* Assurez-vous que la carte occupe toute la largeur */
+  margin: 0; /* Élimine les marges par défaut */
+  padding: 0; /* Élimine les espacements internes par défaut */
+}

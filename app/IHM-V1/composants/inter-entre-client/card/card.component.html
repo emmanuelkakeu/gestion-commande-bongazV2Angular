@@ -1,0 +1,48 @@
+<div class="container" style="min-height: 800px;">
+  <div *ngIf="articlesInCart.length === 0" class="text-center">
+    <h2 class="text-center" style="color: blue;">Aucun article dans le panier pour le moment.</h2>
+  </div>
+  <div *ngIf="articlesInCart.length > 0">
+    <h3>Articles dans le panier :</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Nom de l'article</th>
+          <th>Prix TTC</th>
+          <th>Quantité</th>
+          <th>Total par article</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articlesInCart">
+          <td>
+            <img *ngIf="article.article?.imageUrl" [src]="article.article?.imageUrl" style="height: 200px;" alt="Image de l'article" class="img-thumbnail">
+            <img *ngIf="!article.article?.imageUrl" src="assets/product.png" alt="Image par défaut" class="img-thumbnail">
+          </td>
+          <td>{{ article.article?.nameArticle }}</td>
+          <td style="font-weight: bold; ">{{ article.article?.prixUnitaireTtc }} FCFA</td>
+          <td>
+            <div style="display: flex; align-items: center; ">
+              <input type="number" [(ngModel)]="article.quantite" (change)="updateQuantity(article)" class="form-control d-inline-block" style="width: 100px; text-align: center;">
+              <div style="display: flex; flex-direction: column;">
+                <button type="button" (click)="incrementQuantity(article)" class="btn btn-primary increment-btn">+</button>
+                <button type="button" (click)="decrementQuantity(article)" class="btn btn-secondary decrement-btn">-</button>
+              </div>
+            </div>
+          </td>
+          <td style="font-weight: bold; ">{{ article.prixTotalLgn }} FCFA</td>
+          <td>
+            <button type="button" class="btn btn-secondary" (click)="removeFromCart(article)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right" style="margin-left: 500px;">
+
+      <h5 style="margin-top: 20px; margin-bottom: 30px; color: #404040;">Total de la commande :  <span style="font-size: 25px; font-weight: bold; color: #171716; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{ calculateTotalPrice()}}</span>  FCFA</h5>
+      <button type="button" class="btn btn-primary" (click)="createOrder()">Passer la commande</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+.sidebar {
+  width: 350px;
+  height: 100%;
+  background-color: #343a40;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: width 0.3s, height 0.3s;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  height: 50px; /* Ajustez cette valeur selon la taille de l'icône */
+}
+
+.collapse-button {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  align-items: center;
+  height: 50px;
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  border-bottom: 1px solid #495057;
+  cursor: pointer;
+}
+
+.menu-item:hover, .menu-item.active {
+  background-color: #495057;
+}
+
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #6c757d;
+}
+
+.submenu li {
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.submenu li a {
+  padding: 10px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.submenu li a:hover, .submenu li a.active {
+  background-color: #846363;
+}
+
+.menu-item i.chevron {
+  margin-left: auto;
+  transition: transform 0.3s;
+  transform: rotate(0deg); /* Initialement vers la droite */
+}
+
+.menu-item.active i.chevron {
+  transform: rotate(180deg); /* Vers le bas lorsque le menu est déplié */
+}
+
+.menu-item i {
+  margin-right: 15px;
+}
+
+.sidebar.collapsed .menu-item  {
+  display: none;
+}
+
+.sidebar.collapsed .submenu {
+  display: none;
+}
+
+.submenu li a i {
+  margin-right: 10px;
+}
