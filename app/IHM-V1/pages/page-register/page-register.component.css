@@ -1,10 +1,10 @@
 form {
-  max-width: 400px;
+  max-width: 600px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
 }
 
@@ -23,6 +23,20 @@ form input[type="password"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.address-row input {
+  width: calc(50% - 10px);
+  padding: 3px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.address-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 form button[type="submit"] {
@@ -45,3 +59,32 @@ form input:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
+
+.radio-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50PX;
+  margin-top: 20PX;
+
+}
+
+.radio-group input[type="radio"] {
+  margin: 0 5px 0 0;
+
+}
+
+.radio-group label {
+  margin: 0 100px 0 5px;
+
+}
+
+form p {
+  font-size: 14px;
+  color: #0c0c0c;
+  background-color: #e1edef;
+  padding: 5px;
+  border-color: rgb(188, 234, 234);
+  margin-bottom: 20px;
+}
+
+

@@ -1,7 +1,29 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/users-service';
+import { AdresseDto } from '../../../gUsers-api/src/models/adresse-dto';
+import { Status } from '../../../gUsers-api/src/models/enums/statut';
+import { Role } from '../../../gUsers-api/src/models/role';
 import { Router } from '@angular/router';
-import { UsersDto } from '../../../gUsers-api/src/models';
+
+export class UsersDto {
+  id: number;
+  firstName: string;
+  name: string;
+  lastName: string;
+  email: string;
+  adresseDto: AdresseDto = {}; // Initialisation de l'objet adresseDto
+  password: string;
+  contactDetails: string;
+  status: Status;
+  dateCreated: Date;
+  imageFileName: string;
+  role: Role;
+  typeUtilisateur: string = ''; // Initialisation de typeUtilisateur
+  latitude: number;
+  longitude: number;
+  // Champs spécifiques pour l'entreprise
+  openingHours?: string;
+}
 
 @Component({
   selector: 'app-page-register',

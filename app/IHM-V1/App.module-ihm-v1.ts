@@ -5,7 +5,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { NgxSpinnerModule } from 'ngx-spinner'; // Ajouter cette ligne
+import { NgxSpinnerModule } from 'ngx-spinner'; // Ajouter cette ligne
 
 import { IhmV1Component } from './ihm-v1.component';
 import { MenuComponent } from './composants/menu/menu.component';
@@ -39,6 +39,9 @@ import { ImagesService } from '../gCmmd-api/src/services';
 import { CardService } from './composants/inter-entre-client/card/card-service';
 import { PageArticleComponent } from './pages/articles/page-article/page-article.component';
 import { SearchService } from './services/searchService';
+import { ClickOutsideDirective } from './composants/clickOutsideDirective';
+import { CommandeCompaniesFinalService } from './services/commande-companies-final';
+import { CommandeCompaniesFinalFormComponent } from './pages/pages-commd-comp-suppl/commande-companies-final-form/commande-companies-final-form.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,9 @@ import { SearchService } from './services/searchService';
     PagesSupplierComponent,
     DetailClsFrsComponent,
     NouveauSupplierCompaniesComponent,
-    MapComponent
+    MapComponent,
+    ClickOutsideDirective,
+    CommandeCompaniesFinalFormComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +81,8 @@ import { SearchService } from './services/searchService';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    // NgxSpinnerModule // Ajouter cette ligne
+    NgxSpinnerModule,
+     // Ajouter cette ligne
   ],
   providers: [
     {
@@ -86,7 +92,8 @@ import { SearchService } from './services/searchService';
     },
     ImagesService,
     CardService,
-    SearchService
+    SearchService,
+    CommandeCompaniesFinalService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

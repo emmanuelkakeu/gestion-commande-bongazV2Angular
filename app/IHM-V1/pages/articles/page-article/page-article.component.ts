@@ -6,7 +6,6 @@ import { ImagesService } from '../../../services/Image-service';
 import { catchError, of, tap, Observable, Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { SearchService } from '../../../services/searchService';
 
 @Component({
   selector: 'app-page-article',
@@ -28,7 +27,7 @@ export class PageArticleComponent implements OnInit, OnDestroy {
     designation: '',
     prixUnitaireHt: 0,
     tauxTva: 0,
-    stockInit: 0,
+    stock: 0,
     imageFileName: '',
     supplierId: null,
     gasRetailerId: null
@@ -36,7 +35,7 @@ export class PageArticleComponent implements OnInit, OnDestroy {
   articles: Array<ArticleDto> = [];
   isArticleVueEntrep: boolean = false;
 
-  filteredArticles$: Observable<any[]>;
+  filteredArticles$: Observable<ArticleDto[]>;
   searchControl = new FormControl('');
   searchQuery: string = '';
 
@@ -44,16 +43,20 @@ export class PageArticleComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   totalPages: number = 1;
   itemsPerPage: number = 3;
+  dropdownVisible: boolean = false;
 
   private searchSubscription: Subscription;
+
+
 
   constructor(
     private imagesService: ImagesService,
     private route: ActivatedRoute,
     private router: Router,
-    private articleService: ArticleService,
-    private searchService: SearchService
-  ) { }
+    private articleService: ArticleService
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
@@ -65,9 +68,11 @@ export class PageArticleComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.searchSubscription = this.searchService.searchQuery$.pipe(
+
+    // Set up search control for filtering
+    this.searchControl.valueChanges.pipe(
       startWith(''),
-      map(query => this.filterArticles(query))
+      map(query => this.filterArticles(query!))
     ).subscribe(filteredArticles => {
       this.filteredArticles$ = of(filteredArticles);
     });
@@ -84,15 +89,17 @@ export class PageArticleComponent implements OnInit, OnDestroy {
   private filterArticles(query: string): ArticleDto[] {
     const filterValue = query.toLowerCase();
 
-    const relevantArticles = this.articles.filter(article =>
-      article.nameArticle?.toLowerCase().includes(filterValue)
-    );
-
-    const nonRelevantArticles = this.articles.filter(article =>
-      !article.nameArticle?.toLowerCase().includes(filterValue)
-    );
-
-    return [...relevantArticles, ...nonRelevantArticles];
+    if (filterValue) {
+      const relevantResults = this.articles.filter(article =>
+        article.nameArticle?.toLowerCase().includes(filterValue)
+      );
+      const otherResults = this.articles.filter(article =>
+        !article.nameArticle?.toLowerCase().includes(filterValue)
+      );
+      return [...relevantResults, ...otherResults];
+    } else {
+      return this.articles;
+    }
   }
 
   listeArticle(): void {
@@ -128,6 +135,7 @@ export class PageArticleComponent implements OnInit, OnDestroy {
       tap(response => {
         this.articles = response;
         this.articles.forEach(article => this.loadImage(article));
+        this.filteredArticles$ = of(this.articles);
       }),
       catchError(error => {
         console.error('Erreur lors de la récupération des articles', error);
@@ -135,6 +143,8 @@ export class PageArticleComponent implements OnInit, OnDestroy {
       })
     ).subscribe();
   }
+
+
 
   nouvelArticle(): void {
     this.router.navigate(['/dashboard/articles/add_article']);
@@ -153,19 +163,18 @@ export class PageArticleComponent implements OnInit, OnDestroy {
   }
 
   onSearch(): void {
-    this.currentPage = 1;
-    this.searchService.setSearchQuery(this.searchQuery);
-    this.searchArticles();
+    const query = this.searchQuery.trim().toLowerCase();
+    this.searchResults = this.filterArticles(query);
+    this.dropdownVisible = this.searchResults.length > 0;
   }
 
-  searchArticles(): void {
-    this.articleService.searchArticles(this.searchQuery, this.currentPage, this.itemsPerPage)
-      .subscribe(response => {
-        this.searchResults = response.data;
-        this.totalPages = Math.ceil(response.totalItems / this.itemsPerPage);
-        this.searchService.setSearchResults(this.searchResults);
-      });
+  onResultClick(result: ArticleDto): void {
+    console.log('Selected article:', result);
+    this.router.navigateByUrl(`/dashboard/articleVueEntrep/${result.id}`);
+    this.closeDropdown();
   }
+
+
 
   loadNextPage(): void {
     if (this.currentPage < this.totalPages) {
@@ -179,5 +188,18 @@ export class PageArticleComponent implements OnInit, OnDestroy {
       this.currentPage--;
       this.searchArticles();
     }
+  }
+
+  loadPage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.searchArticles();
+  }
+
+  searchArticles(): void {
+    // Note: This method may no longer be necessary if you handle filtering locally.
+  }
+
+  closeDropdown(): void {
+    this.dropdownVisible = false;
   }
 }

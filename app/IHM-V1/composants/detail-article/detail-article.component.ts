@@ -23,7 +23,7 @@ export class DetailArticleComponent implements OnInit {
     designation: '',
     prixUnitaireHt: 0,
     tauxTva: 0,
-    stockInit: 0,
+    stock: 0,
     imageFileName: '',
     supplierId: null,
     gasRetailerId: null

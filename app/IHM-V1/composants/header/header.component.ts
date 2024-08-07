@@ -10,6 +10,7 @@ import { CardService } from '../../../IHM-V1/composants/inter-entre-client/card/
 import { LigneCommandeSupplierDto } from '../../../gCmmd-api/src/models/ligne-commande-supplier-dto';
 import { ArticleDto } from '../../../gCmmd-api/src/models/article-dto';
 import { ArticleService } from '../../services/articles-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,19 @@ import { ArticleService } from '../../services/articles-service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
   searchQuery: string = '';
   articlesInCart: LigneCommandeSupplierDto[] = [];
   searchResults: ArticleDto[] = [];
-  currentPage: number = 2;
-  totalPages: number = 2;
-  itemsPerPage: number = 8;
+  currentPage: number = 0;
+  totalPages: number = 0;
+  size: number = 8;
+  totalItems: number = 0;
+  dropdownVisible: boolean = false;
+
+  articleId: number = 0; // Remplacez par votre logique pour obtenir l'ID
+  gasRetailerId: number = 0; // Remplacez par votre logique pour obtenir l'ID
+
 
   @Output() searchEvent = new EventEmitter<string>();
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -48,13 +56,16 @@ export class HeaderComponent implements OnInit {
   imageUrl: string = 'favicon.ico';
 
   constructor(
+    private spinner: NgxSpinnerService,
     private userService: UserService,
     private ImageService: ImagesService,
     private router: Router,
     private articleService: ArticleService,
     private searchService: SearchService,
     @Inject(CardService) private cardService: CardService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(): void {
     const user = this.userService.getConnectedUser();
@@ -67,15 +78,19 @@ export class HeaderComponent implements OnInit {
       this.articlesInCart = articles;
     });
 
-    // Watch for search query changes
-    this.searchService.searchQuery$.subscribe(query => {
-      this.searchQuery = query;
-      if (this.searchQuery) {
-        this.searchArticles();
-      } else {
-        this.searchResults = [];
-      }
-    });
+    this.spinner.show();
+
+
+  }
+
+
+  navigateToCard() {
+    const currentRoute = this.router.url;
+    if (currentRoute.includes('articleVueEntrep')) {
+      this.router.navigate(['/dashboard/articleVueEntrep', this.articleId, 'card']);
+    } else if (currentRoute.includes('clientVue')) {
+      this.router.navigate(['/dashboard/clientVue', this.gasRetailerId, 'card']);
+    }
   }
 
   loadImage(): void {
@@ -104,7 +119,7 @@ export class HeaderComponent implements OnInit {
     if (file) {
       this.selectedFile = file;
       this.onSubmitImageUpdate();
-      this.router.navigate(['/dashboard/login']);
+      this.router.navigate(['/login']);
     }
   }
 
@@ -123,54 +138,81 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(): void {
-    console.log('Search query:', this.searchQuery);
-    this.currentPage = 0;
-    this.searchService.setSearchQuery(this.searchQuery);
-    this.searchArticles();
+    if (this.searchQuery.trim()) {
+      this.searchService.searchArticles(this.searchQuery, this.currentPage, 8).subscribe(response => {
+        this.searchResults = response.data;
+        this.totalItems = response.totalItems;
+        this.totalPages = response.totalPages;
+        this.dropdownVisible = true;
+      });
+    } else {
+      this.searchResults = [];
+      this.dropdownVisible = false;
+    }
   }
 
-
-
-  searchArticles(): void {
-    this.searchService.searchArticles(this.searchQuery, this.currentPage, this.itemsPerPage)
+  searchArticles(page: number): void {
+    this.searchService.searchArticles(this.searchQuery, page, this.size)
       .subscribe({
         next: response => {
-          console.log('Search results:', response);
-          this.searchResults = response.data || [];
-          this.totalPages = Math.ceil(response.totalItems / this.itemsPerPage);
-          console.log('Updated searchResults:', this.searchResults);
+          this.searchResults = response.data;
+          this.totalItems = response.totalItems;
+          this.totalPages = response.totalPages;
+          this.currentPage = page;
+          this.dropdownVisible = true;
         },
         error: error => {
-          console.error('Error searching articles:', error);
+          console.error('Erreur lors de la recherche:', error);
           this.searchResults = [];
+          this.dropdownVisible = false;
         }
       });
   }
 
-
-
-
-
-
-
-
-  loadNextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.searchArticles();
+  loadPreviousPage(): void {
+    if (this.currentPage > 0) {
+      this.searchArticles(this.currentPage - 1);
     }
   }
 
-  loadPreviousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.searchArticles();
+  loadNextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.searchArticles(this.currentPage + 1);
+    }
+  }
+
+  loadPage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.searchArticles(page);
     }
   }
 
   onResultClick(result: ArticleDto): void {
     console.log('Selected article:', result);
-    this.router.navigate(['/dashboard/articleDetail', result.id]);
+   if(result.supplierId){
+
+    this.router.navigateByUrl(`/dashboard/articleVueEntrep/${result.id}`).then(success => {
+
+    });
+
+   }else{
+
+    this.router.navigateByUrl (`/dashboard/clientVue/${result.gasRetailerId}`).then(success => {
+
+    });
+    console.log(result.gasRetailerId);
+   }
+
+      this.closeDropdown();
+  }
+
+
+  closeDropdown(): void {
+    this.dropdownVisible = false;
+  }
+
+  getImageUrl(imageFileName: string): string {
+    return `http://localhost:8084/gestionCommande/v1/image/vue/${imageFileName}`;
   }
 
 }

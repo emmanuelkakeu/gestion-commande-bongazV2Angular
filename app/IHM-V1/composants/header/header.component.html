@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-0" style="margin-bottom: 0;">
   <div class="row align-items-center" *ngIf="connectedUser">
     <!-- Section pour l'icône -->
     <div class="col justify-content-center" style="margin-left: -200px;">
@@ -9,35 +9,64 @@
 
     <!-- Section de recherche et barre de navigation en colonne -->
     <div class="col-md-6 d-flex flex-column align-items-center">
-      <!-- Barre de recherche -->
-     <!-- Barre de recherche -->
-<div class="input-group flex-nowrap mb-3" style="width: 1000px;">
-  <input type="text" class="form-control" style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" placeholder="Rechercher vos bouteilles ici..." [(ngModel)]="searchQuery" (input)="onSearch()">
-  <div class="input-group-append" style="border-radius: 0 50px 50px 0;">
-    <span class="input-group-text" id="addon-wrapping" style="font-size: 35px;"><i class="fas fa-search search-icon"></i></span>
-  </div>
-</div>
 
-<div style="position: relative;">
-  <ul *ngIf="searchResults && searchResults.length > 0" class="list-group search-results-dropdown">
-    <li *ngFor="let result of searchResults" class="list-group-item" (click)="onResultClick(result)">
-      {{ result.nameArticle || 'No Name' }}
-    </li>
-    <li *ngIf="totalPages > 1" class="list-group-item">
-      <button (click)="loadPreviousPage()" [disabled]="currentPage === 1">Précédent</button>
-      <button (click)="loadNextPage()" [disabled]="currentPage === totalPages">Suivant</button>
-    </li>
-  </ul>
-</div>
+      <div class="recherche">
+        <div class="input-group flex-nowrap mb-2 search-containner" style="width: 1000px;">
+          <input type="text" class="form-control" style="font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" placeholder="Rechercher vos bouteilles ici..." [(ngModel)]="searchQuery" (input)="onSearch()">
+          <div class="input-group-append" style="border-radius: 0 50px 50px 0;">
+            <span class="input-group-text" id="addon-wrapping" style="font-size: 35px;"><i class="fas fa-search search-icon"></i></span>
+          </div>
+        </div>
+
+        <div *ngIf="dropdownVisible" class="dropdown" appClickOutside (appClickOutside)="closeDropdown()">
+          <ul>
+            <li *ngFor="let result of searchResults" (click)="onResultClick(result)">
+              <div class="dropdown-item">
+                <img *ngIf="result.imageFileName" [src]="getImageUrl(result.imageFileName)" alt="Article Image" class="item-image">
+                <div class="item-details">
+                  <h4>{{ result.nameArticle }}</h4>
+                  <p><strong>Designation:</strong> {{ result.designation }}</p>
+                  <p><strong>Price:</strong> {{ result.prixUnitaireHt }} FCFA</p>
+                  <p><strong>Stock:</strong> {{ result.stock }}</p>
+                </div>
+              </div>
+            </li>
 
 
+          </ul>
+          <div *ngIf="searchResults.length === 0" class="dropdown-item">
+            Aucun élément trouvé
+          </div>
 
+          <div class="pagination-controls">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-light" (click)="loadPage(0)">
+                <i class="fas fa-angle-double-left"></i>
+              </button>
+              <button type="button" class="btn btn-light" (click)="loadPreviousPage()">
+                <i class="fas fa-angle-left"></i>
+              </button>
+
+              <button type="button" class="btn btn-light" *ngFor="let page of [].constructor(totalPages); let i = index" (click)="loadPage(i)">
+                {{ i + 1 }}
+              </button>
+
+              <button type="button" class="btn btn-light" (click)="loadNextPage()">
+                <i class="fas fa-angle-right"></i>
+              </button>
+              <button type="button" class="btn btn-light" (click)="loadPage(totalPages - 1)">
+                <i class="fas fa-angle-double-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
 
       <!-- Barre de navigation -->
-      <nav class="navbar navbar-expand-md navbar-light mt-3" style="background-color: #131737; margin-top: 10px;">
+      <nav class="navbar navbar-expand-md navbar-light mt-4" style="background-color: #131737; margin-top: 10px;">
         <div class="container-fluid nav-column">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,20 +74,22 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/dashboard/articleVueEntrep']"><i class="fas fa-home" style="margin-bottom: 4px;"></i> Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/dashboard/map']">
-                  <i class="fas fa-map"></i> Point De Vente
+                <a class="nav-link" [routerLink]="['/dashboard/articleVueEntrep']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" style="padding-bottom: 10px;">
+                  <i class="fas fa-home" style="margin-bottom: 4px;"></i> Accueil
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/dashboard/card']">
+                <a class="nav-link" [routerLink]="['/dashboard/map']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+                  <i class="fas fa-map"></i> Point De Vente
+                </a>
+              </li>
+              <li class="nav-item" style=" padding-bottom: 23px ;">
+                <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                   <i class="fas fa-history"></i> Commande
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link cart-icon" [routerLink]="['/dashboard/card']">
+                <a class="nav-link cart-icon" [routerLink]="['/dashboard/card']"   routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                   <span class="badge badge-pill badge-primary cart-count">{{ articlesInCart.length }}</span>
                   <i class="fas fa-shopping-cart"></i> Panier
                 </a>
@@ -67,6 +98,7 @@
           </div>
         </div>
       </nav>
+
     </div>
 
     <!-- Section de profil utilisateur -->
@@ -76,6 +108,5 @@
       <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" />
     </div>
   </div>
+  <button style="margin-left: 1000px;" [routerLink]="['/login']" > Se connecter</button>
 </div>
-
-

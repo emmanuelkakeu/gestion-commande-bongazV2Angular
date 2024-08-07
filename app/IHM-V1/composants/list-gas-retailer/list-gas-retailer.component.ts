@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ListGasRetailerComponent implements OnInit {
   gasRetailers: GasRetailerDto[] = [];
   filteredGasRetailers: GasRetailerDto[] = [];
-  searchSubscription: Subscription;
+  searchQuery: string = '';
 
   constructor(private gasRetailerService: GasRetailerService,
     private searchService: SearchService) {}
@@ -21,18 +21,14 @@ export class ListGasRetailerComponent implements OnInit {
 
   ngOnInit(): void {
     this.listGasRetailers();
-    this.searchSubscription = this.searchService.searchQuery$.subscribe(query => {
-      this.onSearch(query);
-    });
+
   }
 
-  ngOnDestroy(): void {
-    if (this.searchSubscription) {
-      this.searchSubscription.unsubscribe();
-    }
-  }
 
-  onSearch(query: string): void {
+
+  onSearch(): void {
+
+    const query = this.searchQuery.toLowerCase();
     if (!query) {
       this.filteredGasRetailers = [...this.gasRetailers];
       return;

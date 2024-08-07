@@ -1,0 +1,86 @@
+
+
+<div class="container">
+  <h2>Finaliser la commande</h2>
+  <!-- <app-nouveau-supplier-companies></app-nouveau-supplier-companies> -->
+
+  <div>
+    <h3>Articles dans la commande :</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Article</th>
+          <th>Quantité</th>
+          <th>Prix Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of commande.commandeCompaniesDto.ligneCommandeCompaniesDto">
+          <td><img [src]="item.articleDto?.imageUrl || 'assets/product.png'" alt="{{ item.articleDto?.nameArticle }}" width="50"></td>
+          <td>{{ item.articleDto?.nameArticle || 'N/A' }}</td>
+          <td>{{ item.quantite || 'N/A' }}</td>
+          <td>{{ item.prixTotalLgn || '0' }} FCFA</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">Total commande</th>
+          <th>{{ commande.commandeCompaniesDto.prixTolalCmmd || '0' }} FCFA</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <form (ngSubmit)="createFinalCommande()">
+    <!-- <fieldset>
+      <legend>Infos Compagnies Client</legend>
+      <div class="form-group">
+        <label for="clientName">Nom de la compagnie</label>
+        <input type="text" id="clientName" [(ngModel)]="commande.infosCompaniesClient.name" name="clientName" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="clientContact">Détails du contact</label>
+        <input type="text" id="clientContact" [(ngModel)]="commande.infosCompaniesClient.contactDetails" name="clientContact" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="clientOpeningHours">Heures d'ouverture</label>
+        <input type="text" id="clientOpeningHours" [(ngModel)]="commande.infosCompaniesClient.openingHours" name="clientOpeningHours" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="clientLatitude">Latitude</label>
+        <input type="number" id="clientLatitude" [(ngModel)]="commande.infosCompaniesClient.latitude" name="clientLatitude" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="clientLongitude">Longitude</label>
+        <input type="number" id="clientLongitude" [(ngModel)]="commande.infosCompaniesClient.longitude" name="clientLongitude" class="form-control" required />
+      </div>
+    </fieldset> -->
+
+    <fieldset>
+      <legend>Adresse de Livraison</legend>
+      <div class="form-group">
+        <label for="deliveryCity">Ville</label>
+        <input type="text" id="deliveryCity" [(ngModel)]="commande.adresseLivraison.ville" name="deliveryCity" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="deliveryQuartier">Quartier</label>
+        <input type="text" id="deliveryQuartier" [(ngModel)]="commande.adresseLivraison.quartier" name="deliveryQuartier" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="deliveryStreet">Rue</label>
+        <input type="text" id="deliveryStreet" [(ngModel)]="commande.adresseLivraison.rue" name="deliveryStreet" class="form-control" required />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Coût de Livraison</legend>
+      <div class="form-group">
+        <label for="coutLivraison">Coût de Livraison</label>
+        <input type="number" id="coutLivraison" [(ngModel)]="commande.coutLivraison" name="coutLivraison" class="form-control" required />
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Créer la commande finale</button>
+  </form>
+</div>

@@ -3,13 +3,13 @@ export class Role {
   // Définissez les propriétés de la classe Role ici
   // Exemple :
   roleId: number;
-  roleName: string;
+  libelle: string;
 
   constructor(
     roleId: number = 0,
-    roleName: string = ''
+    libelle: string = ''
   ) {
     this.roleId = roleId;
-    this.roleName = roleName;
+    this.libelle = libelle;
   }
 }

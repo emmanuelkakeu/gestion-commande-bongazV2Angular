@@ -13,7 +13,7 @@ export interface Article {
   designation?: string;
   prixUnitaireHt?: number;
   tauxTva?: number;
-  stockInit?:number;
+  stock?:number;
   supplierId?:number|undefined;
   gasRetailerId?:number|undefined;
   prixUnitaireTtc?: number;

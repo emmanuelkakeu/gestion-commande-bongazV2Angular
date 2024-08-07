@@ -43,7 +43,7 @@ export class PagesLoginComponentComponent implements AfterViewInit {
 
   onLogin() {
     this.userService.connexion(this.credentials).subscribe({
-      next: response => {
+      next: (response) => {
         console.log('Réponse de connexion:', response);
         if (response.data && response.data.jwt) {
           const jwtToken = response.data.jwt;
@@ -55,14 +55,27 @@ export class PagesLoginComponentComponent implements AfterViewInit {
         if (response.data && response.data.user) {
           this.userService.setConnectedUser(response.data.user);
           console.log('Utilisateur connecté:', response.data.user);
-          this.router.navigate(['dashboard/clientVue']);
+
+          if (response.data.user.role.libelle === 'INDIVIDUALCLIENT') {
+            this.router.navigate(['dashboard/clientVue']);
+          } else if (response.data.user.role.libelle === 'COMPANIESCLIENT') {
+            this.router.navigate(['dashboard/articleVueEntrep']);
+          } else if (response.data.user.role.libelle === 'GASRETAILER') {
+            this.router.navigate(['dashboard/articles']);
+          } else if (response.data.user.role.libelle === 'SUPPLIER') {
+            this.router.navigate(['dashboard/articles']);
+          }else if (response.data.user.role.libelle === 'ADMIN') {
+            this.router.navigate(['dashboard']);
+          }
         } else {
           console.log('Erreur: Aucune information utilisateur reçue.');
         }
       },
-      error: error => {
+      error: (error: any) => {
         console.error('Erreur lors de la connexion:', error);
       }
     });
-  }
+
+}
+
 }

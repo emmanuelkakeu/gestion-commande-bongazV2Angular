@@ -26,15 +26,21 @@
 
 
 
-
 <div class="container-fluid px-2">
+  <!-- Barre de recherche -->
 
+  <div class="col-md-6 input-group flex-nowrap mb-2 search-containner" style="width: 700px; height: 45px; box-shadow: 0 0 50px #c2ebf9;
+  ">
+    <input type="text" class="form-control" style="color: #9a9a9a; font-size: 20px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" placeholder="Rechercher par ville ..." [(ngModel)]="searchQuery" (input)="onSearch()">
+    <div class="input-group-append" style="border-radius: 0 50px 50px 0;">
+      <span class="input-group-text" id="addon-wrapping" style="font-size: 25px; color: #828282; padding-top:10px;"><i class="fas fa-search search-icon"></i></span>
+    </div>
+  </div>
 
-
-  <!-- Display filtered gas retailers -->
+  <!-- Affichage des détaillants de gaz filtrés -->
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 ml-2" style="margin-top: 10px;">
-    <div *ngFor="let retailer of filteredGasRetailers" >
-      <div class="card h-100 card-hover" style="background-color: #e4f5ff; box-shadow: 0 2px 4px 0 #cfffe0;" >
+    <div *ngFor="let retailer of filteredGasRetailers">
+      <div class="card h-100 card-hover" style="background-color: #e4f5ff; box-shadow: 0 2px 4px 0 #cfffe0;">
         <div class="card-image">
           <img [src]="getImageUrl(retailer.imageFileName!) || './assets/product.png'" alt="Image détaillant de gaz" class="card-img-top" style="height: 200px;">
         </div>
@@ -44,7 +50,7 @@
           <p class="card-text">{{ retailer.adresseDto?.adresse1 }}</p>
           <p class="card-text">{{ retailer.adresseDto?.ville }}</p>
           <a class="button" [routerLink]="[retailer.id]">Détails</a>
-          <button (click)="deleteGasRetailer(retailer.id!)">Supprimer</button>
+          <!-- <button (click)="deleteGasRetailer(retailer.id!)">Supprimer</button> -->
         </div>
       </div>
     </div>

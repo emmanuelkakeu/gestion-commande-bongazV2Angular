@@ -17,6 +17,7 @@ import { PagesLoginComponentComponent } from './pages/pages-login-component/page
 import { PagesVerifyOtpComponentComponent } from './pages/pages-verify-otp-component/pages-verify-otp-component.component';
 import { MapComponent } from './composants/map/map.component';
 import { ListGasRetailerComponent } from './composants/list-gas-retailer/list-gas-retailer.component';
+import { CommandeCompaniesFinalFormComponent } from './pages/pages-commd-comp-suppl/commande-companies-final-form/commande-companies-final-form.component';
 
 const routes: Routes = [
 
@@ -64,9 +65,19 @@ const routes: Routes = [
         path: 'vue_entreprise/:supplierId',
         component: DetailEntrepriseComponent,
       },
+
       {
         path: 'card',
         component: CardComponent,
+      },
+
+      {
+        path: 'clientVue/:gasRetailerId/card',
+        component: CardComponent,
+      },
+      {
+        path: 'finalisercommande',
+        component:CommandeCompaniesFinalFormComponent,
       },
 
 
@@ -77,10 +88,6 @@ const routes: Routes = [
       {
         path: 'clientVue/:gasRetailerId',
         component: DetailEntrepriseComponent,
-      },
-      {
-        path: 'card',
-        component: CardComponent,
       },
 
 

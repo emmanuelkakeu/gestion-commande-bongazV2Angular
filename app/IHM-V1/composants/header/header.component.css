@@ -1,13 +1,11 @@
 /* Styles pour l'icône du panier et l'incrémentation */
 .cart-icon {
-  position: relative; /* Position relative pour contenir le badge */
+  position: relative;
   display: inline-block;
 }
 
 .cart-icon .cart-count {
   position: absolute;
-  /* Ajustez cette valeur pour positionner le badge au-dessus de l'icône */
-  /* Ajustez cette valeur pour positionner le badge au-dessus de l'icône */
   margin-top: -40px;
   color: #eaea82;
   border-radius: 40%;
@@ -48,6 +46,7 @@ width: 500px;
   font-size: 30px;
   padding: 0px 40px;
   margin-right: 20px;
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -55,6 +54,8 @@ width: 500px;
 
 .navbar-light .navbar-nav .nav-link {
   color: whitesmoke;
+  padding-bottom: 0 !important;
+  margin-bottom:0 !important;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -65,6 +66,7 @@ width: 500px;
   justify-content: center;
   border-radius: 70px;
   margin-right: 350px;
+  margin-bottom: 0px;
 }
 
 .mb-3 {
@@ -85,22 +87,125 @@ width: 500px;
   margin-right: 8px;
 }
 
-
-.search-results-dropdown {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  max-height: 300px;
-  overflow-y: auto;
-  position: absolute;
-  z-index: 102000;
+/* Container pour la barre de recherche */
+.recherche {
+  position: relative;
 }
 
-.search-results-dropdown .list-group-item {
+
+/* Styles pour le dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  height: 500px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 0 0 10px 10px;
+}
+
+/* Styles pour la barre de défilement dans les navigateurs basés sur WebKit */
+.dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #c3b6b6;
+  border-radius: 10px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background-color: #726868; /* Couleur de la barre de défilement au survol */
+}
+
+/* Liste du dropdown */
+.dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Élément individuel du dropdown */
+.dropdown-item {
+  display: flex;
+  padding: 10px;
+color: #756b6b;
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   cursor: pointer;
 }
 
-.search-results-dropdown .list-group-item:hover {
-  background-color: #f8f9fa;
+/* Style au survol pour les éléments du dropdown */
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Style pour les images des éléments du dropdown */
+.item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Détails de l'élément du dropdown */
+.item-details {
+  flex: 1;
+}
+
+.item-details h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.item-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* CSS lien actif */
+.navbar-nav .nav-item .nav-link {
+  position: relative;
+  padding-bottom: 10px;
+  padding-bottom: 3px !important;
+}
+
+.navbar-nav .nav-item .nav-link.active-link::before {
+  content: ''; /* Nécessaire pour créer une ligne */
+  position: absolute; /* Positionne la ligne relative au lien */
+  left: 50%; /* Centre la ligne horizontalement */
+  transform: translateX(-50%); /* Ajuste la position pour centrer correctement */
+  padding-bottom: 3px !important;
+  bottom: 0; /* Positionne la ligne au bas du lien */
+  width: 70%; /* Largeur de la ligne en pourcentage de la largeur du lien */
+  height: 8px; /* Épaisseur de la ligne */
+  background-color: #007bff; /* Couleur de la ligne */
+  color: #007bff;
+  border-radius: 20%;
+}
+
+
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 5px;
+
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+}
+
+.navbar-nav .nav-item .nav-link.active-link {
+  color: #63b9fd; /* Couleur du texte du lien actif */
+  font-weight: bold; /* Optionnel : rend le texte en gras */
+  position: relative;
+  padding-bottom: 10px; /* Ajoute un espace entre le texte et la ligne */
 }

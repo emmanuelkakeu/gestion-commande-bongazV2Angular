@@ -24,6 +24,7 @@ import { CardService } from './IHM-V1/composants/inter-entre-client/card/card-se
     PagesLoginComponentComponent,
     PageRegisterComponent,
     PagesVerifyOtpComponentComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,7 @@ import { CardService } from './IHM-V1/composants/inter-entre-client/card/card-se
       useClass: AuthInterceptor,
       multi: true
     },
-    GasRetailerService, SearchService ,CardService
+    GasRetailerService, SearchService ,CardService,FormsModule,
   ],
 
   bootstrap: [AppComponent],

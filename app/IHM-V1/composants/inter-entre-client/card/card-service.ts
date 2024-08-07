@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { LigneCommandeSupplierDto, LigneCommandeIndividualClientDto, LigneCommandeCompaniesDto, LigneCommandeGasRetailerDto } from '../../../../gCmmd-api/src/models';
 import { ArticleDto } from '../../../../gCmmd-api/src/models';
+import { SharedDataService } from '../../../services/Shared-data-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,21 @@ export class CardService {
   private articlesInCartSubject = new BehaviorSubject<LigneCommandeSupplierDto[]>([]);
   articlesInCart$ = this.articlesInCartSubject.asObservable();
 
+  private commandeSubject = new BehaviorSubject<any>(null);
+  commande$ = this.commandeSubject.asObservable();
+
+  setCommande(commande: any): void {
+    console.log("commande envoyer",commande)
+    this.commandeSubject.next(commande);
+  }
+
   private apiUrlcmp = `${environment.apiUrlcmp}`;
   private apiUrlindClt = `${environment.apiUrlindClt}`;
   private apifrs = `${environment.apifrs}`;
   private apigasrtl = `${environment.apigasrtl}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    sharedDataService :SharedDataService) {}
 
   addToCart(article: ArticleDto): void {
     const currentArticles = this.articlesInCartSubject.getValue();
@@ -83,11 +93,13 @@ export class CardService {
       case 'INDIVIDUALCLIENT':
         order.idIndividualClient = connectedUser.id;
         order.ligneCommandeIndividualClientDto = ligneCommande;
+        order.prixTolalCmmd = this.calculateTotalPrice(currentArticles);
         apiUrl = `${this.apiUrlindClt}/create`;
         break;
       case 'COMPANIESCLIENT':
         order.idCompanies = connectedUser.id;
         order.ligneCommandeCompaniesDto = ligneCommande;
+        order.prixTolalCmmd = this.calculateTotalPrice(currentArticles);
         apiUrl = `${this.apiUrlcmp}/create`;
         break;
       case 'SUPPLIER':
@@ -105,7 +117,7 @@ export class CardService {
     }
 
     console.log('Order to be sent:', order); // Log to check final order object
-
+    this.setCommande(order);
     return this.http.post<any>(apiUrl, order);
   }
 
@@ -113,10 +125,11 @@ export class CardService {
     switch(roleLibelle) {
       case 'INDIVIDUALCLIENT':
         return articles.map(article => ({
-          
+
           articleDto: article.article,
           quantite: article.quantite,
-          prixTotalLgn: article.prixTotalLgn
+          prixTotalLgn: article.prixTotalLgn,
+
         } as LigneCommandeIndividualClientDto));
       case 'COMPANIESCLIENT':
         return articles.map(article => ({

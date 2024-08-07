@@ -1,5 +1,7 @@
+
+
 export interface ArticleDto {
- 
+
 
   id: number;
   nameArticle: string;
@@ -8,7 +10,7 @@ export interface ArticleDto {
   prixUnitaireHt: number;
   tauxTva: number;
   prixUnitaireTtc: number;
-  stockInit: number;
+  stock: number;
 
   imageFileName: string;
   supplierId: number | null;
@@ -17,3 +19,11 @@ export interface ArticleDto {
   imageUrl?: string; // Ajouté pour l'URL de l'image principale
   additionalImageUrls?: string[]; // Ajouté pour les URLs des images supplémentaires
 }
+
+
+export interface ArticleResponse {
+  totalItems: number;
+  data: ArticleDto[];
+  totalPages: number;
+}
+

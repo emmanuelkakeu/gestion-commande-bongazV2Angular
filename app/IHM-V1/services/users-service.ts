@@ -35,7 +35,7 @@ export class UserService {
       tap(response => {
         console.log('Inscription response:', response);
       })
-    );;
+    );
   }
 
 
@@ -47,9 +47,7 @@ export class UserService {
     );;
   }
 
-  // connexion(authentificationDTO: AuthentificationDTO): Observable<RequestResultDto<Map<string, string>>> {
-  //   return this.http.post<RequestResultDto<Map<string, string>>>(`${this.apiUrl}/users/connexion`, authentificationDTO);
-  // }
+
 
 
   connexion(credentials: AuthentificationDTO): Observable<RequestResultDto<{ jwt: string; user: UsersDto }>> {
@@ -92,10 +90,17 @@ export class UserService {
         return null;
       }
     }
+
+
     return null;
   }
-
-
+  getRole(): string | null {
+    const connectedUser = this.getConnectedUser();
+    if (connectedUser && connectedUser.role) {
+      return connectedUser.role.libelle;
+    }
+    return null;
+  }
 
 
 

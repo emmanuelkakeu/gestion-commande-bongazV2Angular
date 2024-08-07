@@ -3,7 +3,7 @@
     <i class="fas fa-bars"></i>
   </div>
   <ul class="menu-list">
-    <li *ngFor="let menu of menuProperties" [ngClass]="{'active': menu.active}">
+    <li *ngFor="let menu of filteredMenuProperties" [ngClass]="{'active': menu.active}">
       <a (click)="toggleMenu(menu)" class="menu-item">
         <i class="{{menu.icon}}"></i>
         <span *ngIf="!collapsed">{{menu.titre}}</span>

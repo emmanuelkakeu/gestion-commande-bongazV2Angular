@@ -6,7 +6,8 @@
   <div class="container-fluid px-2 max-height card horizontal" *ngIf="articles">
     <div class="d-flex align-items-center justify-content-center">
       <h3 class="text-center m-5">Hello ! Bienvenue chez nous</h3>
-      <a class="buttonPanier" [routerLink]="['/dashboard/card']">
+      <a class="buttonPanier" [routerLink]="['/dashboard/clientVue', gasRetailerId, 'card']">
+
         Consulter Panier <i class="fa-solid fa-cart-shopping fa-2x ml-2 shopping-cart-icon custom-icon"></i>&nbsp;
       </a>
     </div>

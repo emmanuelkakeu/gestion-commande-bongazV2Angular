@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from './card-service';
 import { LigneCommandeSupplierDto } from '../../../../gCmmd-api/src/models/ligne-commande-supplier-dto';
+import { Router } from '@angular/router';
+import { SharedDataService } from '../../../services/Shared-data-service';
+import { CommandeCompaniesDto } from '../../../../gCmmd-api/src/models/commande-companies-dto';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +13,9 @@ import { LigneCommandeSupplierDto } from '../../../../gCmmd-api/src/models/ligne
 export class CardComponent implements OnInit {
   articlesInCart: LigneCommandeSupplierDto[] = [];
 
-  constructor(private cardService: CardService) {}
+  constructor(private cardService: CardService,
+    private sharedDataService: SharedDataService,
+    private router : Router) {}
 
   ngOnInit(): void {
     this.cardService.articlesInCart$.subscribe((articles) => {
@@ -23,16 +28,26 @@ export class CardComponent implements OnInit {
   }
 
   createOrder(): void {
+
+    const commande: CommandeCompaniesDto = {
+      ligneCommandeCompaniesDto: this.articlesInCart,
+      // Ajoutez d'autres champs nécessaires
+    };
+
     this.cardService.createOrder().subscribe({
       next: (response) => {
         console.log('Order created successfully:', response);
-        this.cardService.clearCart();
+       // this.cardService.clearCart();
+       //this.sharedDataService.setCommande(response);
+
+       this.router.navigate(['dashboard/finalisercommande']);
       },
       error: (error) => {
         console.error('Error creating order:', error);
       }
     });
   }
+  
 
   calculateTotalPrice(): number {
     return this.cardService.calculateTotalPrice(this.articlesInCart);
@@ -49,4 +64,6 @@ export class CardComponent implements OnInit {
   updateQuantity(article: LigneCommandeSupplierDto): void {
     this.cardService.updateQuantity(article);
   }
+
+
 }

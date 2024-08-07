@@ -4,6 +4,7 @@ import { ArticleService } from '../../../../services/articles-service';
 import { ArticleDto } from '../../../../../gCmmd-api/src/models/article-dto';
 import { ImagesService } from '../../../../services/Image-service';
 import { CardService } from '../../../../composants/inter-entre-client/card/card-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-page-article',
@@ -16,16 +17,37 @@ export class DetailArticlePage implements OnInit {
   articleId: string | null = null;
   mainImageUrl: string;
   isImageExpanded = false;
+  private routeSub: Subscription;
 
   constructor(
     private router: Router,
     @Inject(CardService) private cardService: CardService,
     private imageService: ImagesService,
     private route: ActivatedRoute,
+
     private articleService: ArticleService
   ) {}
 
   ngOnInit(): void {
+
+    this.routeSub = this.route.params.subscribe(params => {
+      const articleId = params['articleId'];
+      if (articleId) {
+        this.loadImagesForArticle();
+      
+        console.log(articleId);
+        this.articleService.findById(Number(articleId)).subscribe({
+          next: article => {
+            console.log('Article fetched:', article);
+            this.article = article;
+            this.loadImagesForArticle();
+          },
+          error: error => console.error('Error fetching article', error),
+          complete: () => console.log('Fetch article complete')
+        });
+      }
+    });
+
     console.log('ngOnInit called');
     this.articleId = this.route.snapshot.paramMap.get('articleId');
     console.log('articleId:', this.articleId);
@@ -43,6 +65,13 @@ export class DetailArticlePage implements OnInit {
     this.mainImageUrl = this.article!.imageUrl || './assets/product.png';
   }
 
+
+  loadArticleDetails(articleId: number): void {
+    this.articleService.findById(articleId).subscribe(article => {
+      this.article = article;
+      this.loadImagesForArticle();
+    });
+  }
   loadImagesForArticle() {
     console.log('Starting to load images for the article');
 
